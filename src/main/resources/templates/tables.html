@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorator="~{layout/default_layout}"
+>    
+<head>
+	<meta charset="UTF-8" />
+	<title>tables</title>
+	<th:block layout:fragment="custom_css">
+	<link rel="stylesheet" th:href="@{/vendor/datatables/dataTables.bootstrap4.min.css}" >
+	</th:block>
+</head>
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid" layout:fragment="content">
+
+          <!-- Page Heading -->
+          <h1 class="h3 mb-2 text-gray-800">테스트 자동화</h1>
+          <p class="mb-4">EDM 웹 UI 테스트 자동화 모듈 입니다.</p>
+
+          <!-- DataTales Example -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">단위테스트 목록</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th style="width:10%">테스트ID</th>
+                      <th>기능</th>
+                      <th style="width:30%">수행절차</th>
+                      <th style="width:30%">사전작업</th>
+                      <th>기대 값</th>
+                      <th style="width:20px">TEST</th>
+                    </tr>
+                  </thead>
+                  <tfoot>
+                    <tr>
+                      <th>테스트ID</th>
+                      <th>기능</th>
+                      <th>수행절차</th>
+                      <th>사전작업</th>
+                      <th>기대 값</th>
+                      <th>TEST</th>
+                    </tr>
+                  </tfoot>
+                  <tbody>
+                    <tr th:if="${ #lists.size(testCase) } != '0'" th:each="testCase : ${testCase}">
+                      <td th:text="${testCase.TEST_ID}"></td>
+                      <td th:text="${testCase.SMALL_CATEGORY}"></td>
+                      <td th:utext="${#strings.replace(testCase.PROCEDURE, '\n', '&lt;br /&gt;')}"></td>
+                      <td th:utext="${#strings.replace(testCase.BEFORE_PROCEDURE, '\n', '&lt;br /&gt;')}"></td>
+                      <td th:utext="${#strings.replace(testCase.RESULT, '\n', '&lt;br /&gt;')}"></td>
+                      <td><a th:href="@{http://localhost:4765/selenium/4/default/case037/start.do}" >TEST</a></td>
+                    </tr>
+                    <tr th:if="${ #lists.size(testCase) } == '0'" >
+                      <td colspan="10">조회된 데이터가 존재하지 않습니다.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- /.container-fluid -->
+      
+	<th:block layout:fragment="custom_js">		
+		<!-- Page level custom scripts -->
+		<script th:src="@{/vendor/datatables/jquery.dataTables.min.js}" ></script>
+		<script th:src="@{/vendor/datatables/dataTables.bootstrap4.min.js}" ></script>
+		<script th:src="@{/js/demo/dataTables-demo.js}" ></script>
+	</th:block>
+</body>
+
+</html>

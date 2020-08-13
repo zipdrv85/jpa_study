@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorator="~{layout/default_layout}"
+>    
+<head>
+	<meta charset="UTF-8" />
+	<title>settings-env</title>
+</head>
+<div class="container mt-n10" layout:fragment="content">
+	<div class="row">
+		<div class="col-lg-12">
+			<!-- Default Bootstrap Form Controls-->
+			<div id="default">
+				<div class="card mb-4">
+				<div class="card-header">환경 설정</div>
+					<div class="card-body">
+						<div class="form-group">
+							<label for="envCase">Example select</label>
+							<select class="form-control" id="envCase">
+								<option th:each="envCase : ${envCase}" th:value="${envCase.ENVID}" th:text="${envCase.DESCRIPTION}" th:selected="(${envCase.ENABLED} == true)"></option>
+							</select>
+						</div>
+							<!-- Component Preview-->
+						<div class="sbp-preview">
+							<div class="sbp-preview-content">
+								<form id="envForm">
+									<div class="form-group" id="descriptionFormGroup">
+										<label for="description">DESCRIPTION</label>
+										<input class="form-control" id="description" type="input" placeholder="인젠트 연구소 개발서버 4.0" name="description" />
+									</div>
+									<div class="form-group">
+										<label for="urlFormControlInput">URL</label>
+										<input class="form-control" id="url" type="input" placeholder="http://ecm.inzent.com" name="url" />
+									</div>
+									<div class="form-group">
+										<label for="id">ID</label>
+										<input class="form-control" id="id" type="input" placeholder="SUPER" name="id" />
+									</div>
+									<div class="form-group">
+										<label for="password">P/W</label>
+										<input class="form-control" id="password" type="input" placeholder="SUPER" name="password" />
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+<script>
+	$(document).ready(function ()  {
+		const callEnvCase = function (envid) {
+	        $.ajax({
+	            url:'./settings-env/'+envid,
+	            success:function(data){
+	            	$("description").val(data.description);
+	            	$("enabled").val(data.enabled);
+	            	$("id").val(data.id);
+	            	$("password").val(data.password);
+	            	$("url").val(data.url);
+	            }
+	        })
+		};
+		
+		$('#envCase').click(function(){
+			callEnvCase(this.value);
+		});
+		
+		$("#descriptionFormGroup").attr("display") = "none";
+		
+
+	})
+</script>
+</div>
+	<th:block layout:fragment="custom_js">		
+		<!-- Page level custom scripts -->
+		<script th:src="@{/vendor/datatables/jquery.dataTables.min.js}" ></script>
+		<script th:src="@{/vendor/datatables/dataTables.bootstrap4.min.js}" ></script>
+	</th:block>
+</body>
+
+</html>
