@@ -49,5 +49,11 @@ public class EnvService {
 		return envRepository
 				.findByEnvid(url);
 	}
+	
+	@Transactional(readOnly = true)
+	public Env findByVersionAndEnabled(String version, Boolean enabled) {
+		return envRepository
+				.findByVersionAndEnabled(version, enabled);
+	}
 }
 

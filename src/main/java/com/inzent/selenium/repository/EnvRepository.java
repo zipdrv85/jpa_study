@@ -14,5 +14,7 @@ public interface EnvRepository extends JpaRepository<Env, Integer> {
 	
 	Env findByEnvid(String envid);
 	
+	Env findByVersionAndEnabled(String version, boolean enabled);
+	
 	Env findByUrl(String url);
 }

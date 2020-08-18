@@ -23,5 +23,5 @@ public interface TestRepository extends JpaRepository<TestCase, Long>{
 
     List<TestCase> findAllByVersion(String version);
 
-    Page<TestCase> findAllByVersion(String version, Pageable pageable);
+    List<TestCase> findAllByVersion(String version, Pageable pageable);
 }

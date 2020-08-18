@@ -13,46 +13,49 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lombok.Getter;
+import lombok.NonNull;
 
-@Table(name = "TESTCASEATTR")
+@Table(name = "envattr")
 @Entity
 @Getter
-public class TestCaseAttr implements Serializable {
-	
+public class EnvAttr implements Serializable {
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private TestCaseAttr() {}
-		
-	//@NonNull
+	private EnvAttr() { }
+
+	@NonNull
 	@Id
-	@Column(name = "TEST_ID", nullable = false, updatable = false)
-	private String TEST_ID;		//테스트아이디
+	@Column(name = "envid", nullable = false, updatable = false)
+	private String envid;
 	
-	//@NonNull
+	@NonNull
 	@Id
 	@Column(name = "ATTR_NAME", nullable = false, updatable = false)
-	private String ATTR_NAME;	//속성명
+	private String attrName;	//속성명
 
-	private String ATTR_VALUE;	//속성이름
+	private String attrValue;	//속성 이름
+	
+	private String description;	//속성 설명
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "TEST_ID")
+	@JoinColumn(name = "envid", nullable = false)
 	@JsonBackReference
-	private TestCase testCase;
-	
+	private Env env;
+
 	//연관관계 메소드 (FK 보단 비즈니스 관점에서 위치한다)
-	public void setTestCase(TestCase testCase) {
-		this.testCase = testCase;
-		testCase.getTestCaseAttr().add(this);
+	public void setEnv(Env env) {
+		this.env = env;
+		env.getEnvAttr().add(this);
 	}
 
 	@Override
 	public String toString() {
-		return "TestCaseAttr [TEST_ID=" + TEST_ID + ", ATTR_NAME=" + ATTR_NAME + ", ATTR_VALUE=" + ATTR_VALUE
-				+ ", testCase=" + testCase + "]";
+		return "EnvAttr [envid=" + envid + ", attrName=" + attrName
+				+ ", attrValue=" + attrValue + ", description=" + description
+				+ ", env=" + env + "]";
 	}
-
 }

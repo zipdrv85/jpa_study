@@ -1,11 +1,13 @@
 package com.inzent.selenium.controller;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,10 +24,17 @@ public class SeleniumUrlController {
 	
 	private String callPackageName = "com.inzent.selenium.service.impl.";
 
+	private final ChromeOptions chromeDriverOptions; 
+	
+	/*
 	@PostConstruct
 	private void setSeleniumSystemDriver () {
         //Selenium WebDrvier Settings		
-        System.setProperty(PropertyUtil.getConfigValue("selenium.webDriverName"), System.getProperty("user.dir")+PropertyUtil.getConfigValue("selenium.webDriverPath8.0"));
+        //System.setProperty(PropertyUtil.getConfigValue("selenium.webDriverName"), System.getProperty("user.dir")+PropertyUtil.getConfigValue("selenium.webDriverPath8.0"));
+	}*/
+	
+	public SeleniumUrlController(ChromeOptions chromeDriverOptions) {
+		this.chromeDriverOptions = chromeDriverOptions;
 	}
 	
 	@RequestMapping("/{version}/{className}/{testNumber}/start.do")
@@ -39,14 +48,16 @@ public class SeleniumUrlController {
 
 		if("4".contentEquals(version)) {			
 			Class<? extends Selenium4Service> service = (Class<? extends Selenium4Service>) Class.forName(callPackageName+className+version+"ServiceImpl");
-			Selenium4Service serviceImpl = (Selenium4Service)service.newInstance();
+			Constructor<?> cs = service.getConstructor(this.chromeDriverOptions.getClass());
+			Selenium4Service serviceImpl = (Selenium4Service)cs.newInstance(chromeDriverOptions);
 
 			Method method = serviceImpl.getClass().getMethod(testNumber, HttpServletRequest.class);
 			method.invoke(serviceImpl, request);
 
 		} else if("6".contentEquals(version)) {			
 			Class<? extends Selenium6Service> service = (Class<? extends Selenium6Service>) Class.forName(callPackageName+className+version+"ServiceImpl");
-			Selenium6Service serviceImpl = (Selenium6Service)service.newInstance();
+			Constructor<?> cs = service.getConstructor(this.chromeDriverOptions.getClass());
+			Selenium6Service serviceImpl = (Selenium6Service)cs.newInstance(chromeDriverOptions);
 
 			Method method = serviceImpl.getClass().getMethod(testNumber, HttpServletRequest.class);
 			method.invoke(serviceImpl, request);

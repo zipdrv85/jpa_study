@@ -7,6 +7,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.inzent.selenium.com.LoginService;
@@ -18,15 +20,16 @@ import com.inzent.selenium.util.PropertyUtil;
 @Slf4j
 public class Selenium4ServiceImpl implements Selenium4Service {
 
-	@Autowired
-	WebDriver driver; 
+	private final ChromeOptions chromeDriverOptions; 
 	
 	private final String base_url = PropertyUtil.getConfigValue("selenium.domain");
 
 	private final String BOOKMARK_CHECKED = "fa fa-star bookmarked";
 	private final String BOOKMARK_UNCHECKED = "fa fa-star-o bookmarked";
 
-	public Selenium4ServiceImpl () { }
+	public Selenium4ServiceImpl (ChromeOptions chromeDriverOptions) {
+		this.chromeDriverOptions = chromeDriverOptions;
+	}
 	
 	@Override
 	public void case034 ( HttpServletRequest req ) {
@@ -51,6 +54,11 @@ public class Selenium4ServiceImpl implements Selenium4Service {
 	@Override
 	public void case037(HttpServletRequest req) {
 		
+		log.debug("what is base_url ?? " + base_url);
+		log.debug("what is chromeDriverOptions ?? " + chromeDriverOptions);
+		
+		ChromeDriver driver = new ChromeDriver(chromeDriverOptions);
+
 		// TODO 즐겨찾기 선택
 		LoginService.Login4(driver, base_url);
 

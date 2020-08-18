@@ -38,7 +38,7 @@ public class TestService {
 	}
 	
 	@Transactional(readOnly = true)
-	public Page<TestCase> findAllByVersion(String version, Pageable pageable) {
+	public List<TestCase> findAllByVersion(String version, Pageable pageable) {
 		return testRepository
 				.findAllByVersion(version, pageable);
 	}

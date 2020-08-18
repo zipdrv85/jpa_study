@@ -1,5 +1,7 @@
 package com.inzent.selenium.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.inzent.selenium.entity.Env;
+import com.inzent.selenium.entity.EnvAttr;
 import com.inzent.selenium.entity.TestCase;
 import com.inzent.selenium.service.EnvService;
 import com.inzent.selenium.service.TestService;
@@ -70,10 +73,20 @@ public class SBAdminUIController {
 						, @PathVariable String envid) throws Exception
 	{
 		log.debug("tables settingsenvFindEnv");
-
-		//log.debug(""+envService.findAllByURL("http://192.168.21.98:7080/xedrm/app"));
 		
-		return envService.findAllByEnvid(envid);
+		Env env = envService.findAllByEnvid(envid);
+
+		return env;
+	}
+	
+	@RequestMapping("/env/settings-browser-env")
+	private String settingsBrowserEnv(Model model
+						, HttpServletRequest request, HttpServletResponse reponse) throws Exception
+	{
+		log.debug("settingsBrowserEnv");
+
+		model.addAttribute("envCase", envService.findAll());
+		return "/env/settings-browser-env";
 	}
 
 	//default selector

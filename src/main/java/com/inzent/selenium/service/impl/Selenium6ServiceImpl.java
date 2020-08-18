@@ -2,12 +2,16 @@ package com.inzent.selenium.service.impl;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.openqa.selenium.chrome.ChromeOptions;
+
 import com.inzent.selenium.service.Selenium6Service;
 
 public class Selenium6ServiceImpl implements Selenium6Service {
 
-	public Selenium6ServiceImpl () {
-		
+	private final ChromeOptions chromeDriver6Options;
+	
+	public Selenium6ServiceImpl (ChromeOptions chromeDriver6Options) {
+		this.chromeDriver6Options = chromeDriver6Options;
 	}
 
 	@Override
