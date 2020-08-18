@@ -1,11 +1,8 @@
 package com.inzent.selenium.dto;
 
-import java.util.Date;
+import lombok.Getter;
 
 import com.inzent.selenium.entity.TestCase;
-
-import lombok.Getter;
-import lombok.Setter;
 
 @Getter
 public class TestResponseDto {

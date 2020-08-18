@@ -3,12 +3,12 @@ package com.inzent.selenium.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.domain.Sort.Direction;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,8 +19,6 @@ import com.inzent.selenium.entity.Env;
 import com.inzent.selenium.entity.TestCase;
 import com.inzent.selenium.service.EnvService;
 import com.inzent.selenium.service.TestService;
-
-import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
@@ -46,11 +44,13 @@ public class SBAdminUIController {
 		
 		PageRequest page1 = PageRequest.of(0, 10, Sort.by("testId").and(Sort.by("procedure")));
 		//Sort.by("TEST_ID").ascending()
-		
+
+		//type Page Count call
 		Page<TestCase> page = testService.findAll(page1);
 		log.debug("page.getTotalElements() :: "+page.getTotalElements());
 
-		model.addAttribute("testCase", testService.findAllByVersion(version, page1));
+		//type List not Count call
+		model.addAttribute("testCase", testService.findAllByVersion(version));
 		return "tables";
 	}
 	

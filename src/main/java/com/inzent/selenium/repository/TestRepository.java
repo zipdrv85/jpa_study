@@ -16,12 +16,12 @@ public interface TestRepository extends JpaRepository<TestCase, Long>{
     <E extends TestCase> E save(@NonNull E entity);
 
     List<TestCase> findAll();
-    
+
     Page<TestCase> findAll(Pageable pageable);
 
     long count();
-    
+
     List<TestCase> findAllByVersion(String version);
-    
+
     Page<TestCase> findAllByVersion(String version, Pageable pageable);
 }
