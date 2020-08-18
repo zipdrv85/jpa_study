@@ -3,6 +3,8 @@ package com.inzent.selenium.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,16 +25,22 @@ public class TestService {
 
 	@Transactional
 	public String save(TestRequestDto testRequestDto) {
-		return testRepository.save(testRequestDto.toEntity()).getTEST_ID();
+		return testRepository.save(testRequestDto.toEntity()).getTestId();
 	}
 
 	@Transactional(readOnly = true)
-	public List<TestResponseDto> findAllByVERSION(String version) {
+	public List<TestResponseDto> findAllByVersion(String version) {
 		return testRepository
-				.findAllByVERSION(version)
+				.findAllByVersion(version)
 				.stream()
 				.map(TestResponseDto::new)
 				.collect(Collectors.toList());
+	}
+	
+	@Transactional(readOnly = true)
+	public Page<TestCase> findAllByVersion(String version, Pageable pageable) {
+		return testRepository
+				.findAllByVersion(version, pageable);
 	}
 	
 	@Transactional(readOnly = true)
@@ -42,6 +50,13 @@ public class TestService {
 				.stream()
 				.map(TestResponseDto::new)
 				.collect(Collectors.toList());
+	}
+	
+	
+	@Transactional(readOnly = true)
+	public Page<TestCase> findAll(Pageable pageable) {
+		return testRepository
+				.findAll(pageable);
 	}
 
 }

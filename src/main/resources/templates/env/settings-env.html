@@ -17,15 +17,19 @@
 				<div class="card-header">환경 설정</div>
 					<div class="card-body">
 						<div class="form-group">
-							<label for="envCase">Example select</label>
+							<label for="envCase">환경 설정 명</label>
 							<select class="form-control" id="envCase">
-								<option th:each="envCase : ${envCase}" th:value="${envCase.ENVID}" th:text="${envCase.DESCRIPTION}" th:selected="(${envCase.ENABLED} == true)"></option>
+								<option th:each="envCase : ${envCase}" th:value="${envCase.envid}" th:text="${envCase.description}" th:selected="(${envCase.enabled} == true)"></option>
 							</select>
 						</div>
 							<!-- Component Preview-->
 						<div class="sbp-preview">
 							<div class="sbp-preview-content">
 								<form id="envForm">
+									<div class="form-group" id="enabledFormGroup">
+										<label for="enabled">ENABLED</label>
+										<input class="form-control" type="checkbox" id="enabled" name="enabled" data-toggle="toggle" />
+                                    </div>
 									<div class="form-group" id="descriptionFormGroup">
 										<label for="description">DESCRIPTION</label>
 										<input class="form-control" id="description" type="input" placeholder="인젠트 연구소 개발서버 4.0" name="description" />
@@ -50,34 +54,42 @@
 			</div>
 		</div>
 	</div>
-	
+
 <script>
 	$(document).ready(function ()  {
-		const callEnvCase = function (envid) {
+		let callEnvCase = function (envid) {
 	        $.ajax({
 	            url:'./settings-env/'+envid,
+	            //url:'./settings-env/123',
 	            success:function(data){
-	            	$("description").val(data.description);
-	            	$("enabled").val(data.enabled);
-	            	$("id").val(data.id);
-	            	$("password").val(data.password);
-	            	$("url").val(data.url);
+	            	$("#description").val(data.description);
+
+	            	$("#enabled").prop("checked", data.enabled);
+	            	if(data.enabled) {
+	            		//$(".toggle.btn.btn-primary").prop("class", "toggle btn btn-primary");
+	            		$(".toggle.btn.btn-default.off").prop("class", "toggle btn btn-primary");
+	            	} else {
+	            		//$(".toggle.btn.btn-primary").prop("class", "toggle btn btn-default off");
+	            		$(".toggle.btn.btn-primary").prop("class", "toggle btn btn-default off");
+	            	}
+	            	$("#id").val(data.id);
+	            	$("#password").val(data.password);
+	            	$("#url").val(data.url);
 	            }
 	        })
 		};
-		
-		$('#envCase').click(function(){
+
+		callEnvCase($('#envCase').val());
+
+		$('#envCase').change(function(){
 			callEnvCase(this.value);
 		});
-		
-		$("#descriptionFormGroup").attr("display") = "none";
-		
-
 	})
 </script>
 </div>
 	<th:block layout:fragment="custom_js">		
 		<!-- Page level custom scripts -->
+		<script th:src="@{/vendor/bootstrap/js/bootstrap-toggle.min.js}" ></script>
 		<script th:src="@{/vendor/datatables/jquery.dataTables.min.js}" ></script>
 		<script th:src="@{/vendor/datatables/dataTables.bootstrap4.min.js}" ></script>
 	</th:block>

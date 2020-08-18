@@ -3,6 +3,8 @@ package com.inzent.selenium.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -37,9 +39,15 @@ public class EnvService {
 	}
 	
 	@Transactional(readOnly = true)
-	public Env findAllByENVID(String envid) {
+	public Env findAllByEnvid(String envid) {
 		return envRepository
-				.findAllByENVID(envid);
-	}	
+				.findByEnvid(envid);
+	}
+	
+	@Transactional(readOnly = true)
+	public Env findAllByUrl(String url) {
+		return envRepository
+				.findByEnvid(url);
+	}
 }
 

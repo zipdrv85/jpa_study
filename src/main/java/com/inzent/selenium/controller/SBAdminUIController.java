@@ -3,6 +3,12 @@ package com.inzent.selenium.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.inzent.selenium.entity.Env;
+import com.inzent.selenium.entity.TestCase;
 import com.inzent.selenium.service.EnvService;
 import com.inzent.selenium.service.TestService;
 
@@ -30,13 +37,20 @@ public class SBAdminUIController {
 
 	//테스트케이스 목록 6 버전 4버전
 	@RequestMapping("/tables/{version}")
-	private String tables(Model model
+	private String tables(Pageable pageable
+						, Model model
 						, HttpServletRequest request, HttpServletResponse reponse
 						, @PathVariable String version) throws Exception
 	{
 		log.debug("tables start");
+		
+		PageRequest page1 = PageRequest.of(0, 10, Sort.by("testId").and(Sort.by("procedure")));
+		//Sort.by("TEST_ID").ascending()
+		
+		Page<TestCase> page = testService.findAll(page1);
+		log.debug("page.getTotalElements() :: "+page.getTotalElements());
 
-		model.addAttribute("testCase", testService.findAllByVERSION(version));
+		model.addAttribute("testCase", testService.findAllByVersion(version, page1));
 		return "tables";
 	}
 	
@@ -57,7 +71,9 @@ public class SBAdminUIController {
 	{
 		log.debug("tables settingsenvFindEnv");
 
-		return envService.findAllByENVID(envid);
+		//log.debug(""+envService.findAllByURL("http://192.168.21.98:7080/xedrm/app"));
+		
+		return envService.findAllByEnvid(envid);
 	}
 
 	//default selector

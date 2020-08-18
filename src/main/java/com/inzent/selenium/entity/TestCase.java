@@ -3,14 +3,16 @@ package com.inzent.selenium.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.Getter;
+import lombok.Setter;
 
-@Table(name = "TESTCASE")
+@Table(name = "testcase")
 @Entity
 @Getter
 public class TestCase {
@@ -21,42 +23,54 @@ public class TestCase {
 			String pROCEDURE, String bEFORE_PROCEDURE, String rESULT, String dEVELOPER, String sTARTDATE, String eNDDATE,
 			String tIME, String vERSION) {
 		super();
-		TEST_ID = tEST_ID;
-		MAIN_CATEGORY = mAIN_CATEGORY;
-		MIDDLE_CATEGORY = mIDDLE_CATEGORY;
-		SMALL_CATEGORY = sMALL_CATEGORY;
-		PROCEDURE = pROCEDURE;
-		BEFORE_PROCEDURE = bEFORE_PROCEDURE;
-		RESULT = rESULT;
-		DEVELOPER = dEVELOPER;
-		STARTDATE = sTARTDATE;
-		ENDDATE = eNDDATE;
-		TIME = tIME;
-		VERSION = vERSION;
+		testId = tEST_ID;
+		mainCategory = mAIN_CATEGORY;
+		middleCategory = mIDDLE_CATEGORY;
+		smallCategory = sMALL_CATEGORY;
+		procedure = pROCEDURE;
+		beforeProcedure = bEFORE_PROCEDURE;
+		result = rESULT;
+		developer = dEVELOPER;
+		startdate = sTARTDATE;
+		enddate = eNDDATE;
+		time = tIME;
+		version = vERSION;
 	}
 	
 	@Id
-	private String TEST_ID;			//테스트아이디
-	private String MAIN_CATEGORY;	//대분류
-	private String MIDDLE_CATEGORY;	//중분류
-	private String SMALL_CATEGORY;	//소분류
-	private String PROCEDURE;		//수행 절차
-	private String BEFORE_PROCEDURE;	//사전작업
-	private String RESULT;			//기대값
-	private String DEVELOPER;		//개발자
-	private String STARTDATE;			//시작일시
-	private String ENDDATE;			//완료일시
-	private String TIME;			//소요시간
-	private String VERSION;			//버전
+	@Column(name = "test_Id", nullable = false)
+	private String testId;			//테스트아이디
+	@Column(name = "main_Category")
+	private String mainCategory;	//대분류
+	@Column(name = "middle_Category")
+	private String middleCategory;	//중분류
+	@Column(name = "small_Category")
+	private String smallCategory;	//소분류
+	@Column(name = "procedure")
+	private String procedure;		//수행 절차
+	@Column(name = "before_Procedure")
+	private String beforeProcedure;	//사전작업
+	@Column(name = "result")
+	private String result;			//기대값
+	@Column(name = "developer")
+	private String developer;		//개발자
+	@Column(name = "startdate")
+	private String startdate;			//시작일시
+	@Column(name = "enddate")
+	private String enddate;			//완료일시
+	@Column(name = "time")
+	private String time;			//소요시간
+	@Column(name = "version")
+	private String version;			//버전
 	
 	@OneToMany(mappedBy = "testCase")
 	List<TestCaseAttr> testCaseAttr = new ArrayList<>();
 
 	@Override
 	public String toString() {
-		return "TestListModel [TEST_ID=" + TEST_ID + ", MAIN_CATEGORY=" + MAIN_CATEGORY + ", MIDDLE_CATEGORY="
-				+ MIDDLE_CATEGORY + ", SMALL_CATEGORY=" + SMALL_CATEGORY + ", PROCEDURE=" + PROCEDURE
-				+ ", BEFORE_PROCEDURE=" + BEFORE_PROCEDURE + ", RESULT=" + RESULT + ", DEVELOPER=" + DEVELOPER
-				+ ", STARTDATE=" + STARTDATE + ", ENDDATE=" + ENDDATE + ", TIME=" + TIME + ", VERSION=" + VERSION + "]";
+		return "TestListModel [TEST_ID=" + testId + ", MAIN_CATEGORY=" + mainCategory + ", MIDDLE_CATEGORY="
+				+ middleCategory + ", SMALL_CATEGORY=" + smallCategory + ", PROCEDURE=" + procedure
+				+ ", BEFORE_PROCEDURE=" + beforeProcedure + ", RESULT=" + result + ", DEVELOPER=" + developer
+				+ ", STARTDATE=" + startdate + ", ENDDATE=" + enddate + ", TIME=" + time + ", VERSION=" + version + "]";
 	}
 }

@@ -12,7 +12,7 @@ import javax.persistence.TableGenerator;
 
 import lombok.Getter;
 
-@Table(name = "ENV")
+@Table(name = "env")
 @Entity
 @Getter
 @TableGenerator(
@@ -31,17 +31,20 @@ public class Env implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ENVID", nullable = false)
-	private String ENVID;
-	private String URL;
-	private String ID;
-	private String PASSWORD;
-	private boolean ENABLED;
-	private String DESCRIPTION;
+	@Column(name = "envid", nullable = false)
+	private String envid;
+	@Column(name = "version", nullable = false)
+	private String version;
+	@Column(name = "enabled", nullable = false)
+	private boolean enabled;
+	private String url;
+	private String id;
+	private String password;
+	private String description;
 
 	@Override
 	public String toString() {
-		return "Env [ENVID=" + ENVID + ", URL=" + URL + ", ID=" + ID + ", PASSWORD=" + PASSWORD + ", ENABLED=" + ENABLED
-				+ ", DESCRIPTION=" + DESCRIPTION + "]";
+		return "Env [envid=" + envid + ", url=" + url + ", id=" + id + ", password=" + password + ", enabled=" + enabled
+				+ ", description=" + description + "]";
 	}
 }

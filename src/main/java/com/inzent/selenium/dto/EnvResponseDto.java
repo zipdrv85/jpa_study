@@ -9,22 +9,22 @@ import lombok.extern.slf4j.Slf4j;
 @Getter
 public class EnvResponseDto {
 
-	private String ENVID;
-	private String URL;
-	private String ID;
-	private String PASSWORD;
-	private boolean ENABLED;
-	private String DESCRIPTION;
+	private String envid;
+	private String url;
+	private String id;
+	private String password;
+	private boolean enabled;
+	private String description;
 	
 	public EnvResponseDto() {}
 	
 	public EnvResponseDto(Env env) {
-		ENVID = env.getENVID();
-		URL = env.getURL();
-		ID = env.getID();
-		PASSWORD = env.getPASSWORD();
-		ENABLED = env.isENABLED();
-		DESCRIPTION = env.getDESCRIPTION();
+		envid = env.getEnvid();
+		url = env.getUrl();
+		id = env.getId();
+		password = env.getPassword();
+		enabled = env.isEnabled();
+		description = env.getDescription();
 	}
 	
 }
