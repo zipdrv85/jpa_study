@@ -15,7 +15,7 @@ import com.inzent.selenium.service.EnvService;
 @Getter
 @Configuration
 public class StaticConstractor {
-
+	
 	//NOTE AUTOWIRED DI CHANGE
 	public final EnvService envService;
 

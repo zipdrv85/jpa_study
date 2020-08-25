@@ -15,7 +15,7 @@ import com.inzent.selenium.util.ETCUtil;
 import com.inzent.selenium.util.SeleniumUtil;
 import com.inzent.selenium.util.StringUtil;
 
-public class Jhc4ServiceImpl implements Selenium4Service {
+public class Jhc4ServiceImpl extends Selenium4Service {
 
 	private WebDriver driver;
 

@@ -1,7 +1,5 @@
 package com.inzent.selenium.controller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -18,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.inzent.selenium.entity.Env;
-import com.inzent.selenium.entity.EnvAttr;
 import com.inzent.selenium.entity.TestCase;
 import com.inzent.selenium.service.EnvService;
 import com.inzent.selenium.service.TestService;
@@ -45,15 +42,16 @@ public class SBAdminUIController {
 	{
 		log.debug("tables start");
 		
-		PageRequest page1 = PageRequest.of(0, 10, Sort.by("testId").and(Sort.by("procedure")));
+		//examplePaging
+		//PageRequest page1 = PageRequest.of(0, 10, Sort.by("testId").and(Sort.by("procedure")));
 		//Sort.by("TEST_ID").ascending()
 
 		//type Page Count call
-		Page<TestCase> page = testService.findAll(page1);
-		log.debug("page.getTotalElements() :: "+page.getTotalElements());
-
+		//Page<TestCase> page = testService.findAll(page1);
+		//log.debug("page.getTotalElements() :: "+page.getTotalElements());
+		
 		//type List not Count call
-		model.addAttribute("testCase", testService.findAllByVersion(version));
+		model.addAttribute("testCase", testService.findAllByVersionForJpql(version, "actionUrl"));
 		return "tables";
 	}
 	

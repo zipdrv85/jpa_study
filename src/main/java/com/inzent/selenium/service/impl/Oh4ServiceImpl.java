@@ -8,7 +8,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import com.inzent.selenium.com.LoginService;
 import com.inzent.selenium.service.Selenium4Service;
 
-public class Oh4ServiceImpl implements Selenium4Service {
+public class Oh4ServiceImpl extends Selenium4Service {
 
 	public Oh4ServiceImpl () {
 		

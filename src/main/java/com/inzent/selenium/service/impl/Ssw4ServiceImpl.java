@@ -4,7 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.inzent.selenium.service.Selenium4Service;
 
-public class Ssw4ServiceImpl implements Selenium4Service {
+public class Ssw4ServiceImpl extends Selenium4Service {
 
 	public Ssw4ServiceImpl () {
 		

@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.inzent.selenium.dto.TestCaseDto;
 import com.inzent.selenium.dto.TestRequestDto;
 import com.inzent.selenium.dto.TestResponseDto;
 import com.inzent.selenium.entity.TestCase;
@@ -41,6 +42,12 @@ public class TestService {
 	public List<TestCase> findAllByVersion(String version, Pageable pageable) {
 		return testRepository
 				.findAllByVersion(version, pageable);
+	}
+	
+	@Transactional(readOnly = true)
+	public List<TestCaseDto> findAllByVersionForJpql(String version, String attrName) {
+		return testRepository
+				.findAllByVersionForJpql(version, attrName);
 	}
 	
 	@Transactional(readOnly = true)

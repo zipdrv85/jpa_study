@@ -12,17 +12,19 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.inzent.selenium.com.LoginService;
+import com.inzent.selenium.construct.StaticConstractor;
 import com.inzent.selenium.controller.SBAdminUIController;
 import com.inzent.selenium.service.Selenium4Service;
 import com.inzent.selenium.util.PropertyUtil;
+import com.inzent.selenium.util.StringUtil;
 
 
 @Slf4j
-public class Selenium4ServiceImpl implements Selenium4Service {
+public class Selenium4ServiceImpl extends Selenium4Service {
 
 	private final ChromeOptions chromeDriverOptions; 
 	
-	private final String base_url = PropertyUtil.getConfigValue("selenium.domain");
+	private final String base_url = StringUtil.NVL(StaticConstractor.url4, PropertyUtil.getConfigValue("selenium.domain"));
 
 	private final String BOOKMARK_CHECKED = "fa fa-star bookmarked";
 	private final String BOOKMARK_UNCHECKED = "fa fa-star-o bookmarked";
@@ -55,7 +57,6 @@ public class Selenium4ServiceImpl implements Selenium4Service {
 	public void case037(HttpServletRequest req) {
 		
 		log.debug("what is base_url ?? " + base_url);
-		log.debug("what is chromeDriverOptions ?? " + chromeDriverOptions);
 		
 		ChromeDriver driver = new ChromeDriver(chromeDriverOptions);
 
@@ -64,9 +65,7 @@ public class Selenium4ServiceImpl implements Selenium4Service {
 
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		WebElement checker;
-		String methodName = new Object() {}.getClass().getEnclosingMethod().getName();
-		
-		log.debug("methodName :: " + methodName);
+
 		try {
 			do {
 				/*렌더링 종료 확인*/
@@ -124,6 +123,8 @@ public class Selenium4ServiceImpl implements Selenium4Service {
 			} catch (InterruptedException e1) {
 				e1.printStackTrace();
 			}
+		} finally {
+			driver.quit();
 		}
 	}
 

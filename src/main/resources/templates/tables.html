@@ -54,7 +54,7 @@
                       <td th:utext="${#strings.replace(testCase.procedure, '\n', '&lt;br /&gt;')}"></td>
                       <td th:utext="${#strings.replace(testCase.beforeProcedure, '\n', '&lt;br /&gt;')}"></td>
                       <td th:utext="${#strings.replace(testCase.result, '\n', '&lt;br /&gt;')}"></td>
-                      <td><a th:href="@{http://localhost:4765/selenium/4/default/case037/start.do}" th:target="_blank">TEST</a></td>
+                      <td><a th:href="${testCase.attrValue}" th:target="_blank">TEST</a></td>
                     </tr>
                     <tr th:if="${ #lists.size(testCase) } == '0'" >
                       <td colspan="10">조회된 데이터가 존재하지 않습니다.</td>

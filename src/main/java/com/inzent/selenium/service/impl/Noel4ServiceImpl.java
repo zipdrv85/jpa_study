@@ -18,7 +18,7 @@ import com.inzent.selenium.service.Selenium4Service;
 import com.inzent.selenium.util.ETCUtil;
 import com.inzent.selenium.util.PropertyUtil;
 
-public class Noel4ServiceImpl implements Selenium4Service {
+public class Noel4ServiceImpl extends Selenium4Service {
 
 	public Noel4ServiceImpl () {
 		

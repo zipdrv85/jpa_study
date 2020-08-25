@@ -19,7 +19,7 @@ import com.inzent.selenium.com.LoginService;
 import com.inzent.selenium.service.Selenium4Service;
 import com.inzent.selenium.util.PropertyUtil;
 
-public class John4ServiceImpl implements Selenium4Service {
+public class John4ServiceImpl extends Selenium4Service {
 
 	public John4ServiceImpl () {
 

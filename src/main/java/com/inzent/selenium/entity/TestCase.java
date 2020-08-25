@@ -14,12 +14,12 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 
-@Table(name = "testcase")
+@Table(name = "testCase")
 @Entity
 @Getter
 public class TestCase {
 	
-	private TestCase() {}
+	public TestCase() {}
 	
 	public TestCase(String tEST_ID, String mAIN_CATEGORY, String mIDDLE_CATEGORY, String sMALL_CATEGORY,
 			String pROCEDURE, String bEFORE_PROCEDURE, String rESULT, String dEVELOPER, String sTARTDATE, String eNDDATE,
@@ -67,7 +67,7 @@ public class TestCase {
 	
 	@OneToMany(mappedBy = "testCase")
 	@JsonManagedReference
-	List<TestCaseAttr> testCaseAttr = new ArrayList<>();
+	List<TestCaseAttr> testCaseAttr;
 
 	@Override
 	public String toString() {

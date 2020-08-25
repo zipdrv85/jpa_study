@@ -13,8 +13,9 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lombok.Getter;
+import lombok.NonNull;
 
-@Table(name = "TESTCASEATTR")
+@Table(name = "testCaseAttr")
 @Entity
 @Getter
 public class TestCaseAttr implements Serializable {
@@ -26,17 +27,19 @@ public class TestCaseAttr implements Serializable {
 
 	private TestCaseAttr() {}
 		
-	//@NonNull
+	@NonNull
 	@Id
 	@Column(name = "TEST_ID", nullable = false, updatable = false)
 	private String TEST_ID;		//테스트아이디
 	
-	//@NonNull
+	@NonNull
 	@Id
 	@Column(name = "ATTR_NAME", nullable = false, updatable = false)
-	private String ATTR_NAME;	//속성명
+	private String attrName;	//속성명
 
-	private String ATTR_VALUE;	//속성이름
+	private String attrValue;	//속성이름
+	
+	private String description;	//속성 설명
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "TEST_ID")
@@ -51,8 +54,8 @@ public class TestCaseAttr implements Serializable {
 
 	@Override
 	public String toString() {
-		return "TestCaseAttr [TEST_ID=" + TEST_ID + ", ATTR_NAME=" + ATTR_NAME + ", ATTR_VALUE=" + ATTR_VALUE
+		return "TestCaseAttr [TEST_ID=" + TEST_ID + ", attrName=" + attrName
+				+ ", attrValue=" + attrValue + ", description=" + description
 				+ ", testCase=" + testCase + "]";
 	}
-
 }
