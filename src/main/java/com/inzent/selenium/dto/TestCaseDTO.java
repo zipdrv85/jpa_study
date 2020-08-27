@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class TestCaseDto {
+public class TestCaseDTO {
 
 	private String testId;			//테스트아이디
 	private String mainCategory;	//대분류
@@ -23,9 +23,9 @@ public class TestCaseDto {
 	private String attrValue;	//속성이름
 	private String description;	//속성 설명
 	
-	public TestCaseDto() {}
+	public TestCaseDTO() {}
 	
-	public TestCaseDto(String testId, String mainCategory,
+	public TestCaseDTO(String testId, String mainCategory,
 			String middleCategory, String smallCategory, String procedure,
 			String beforeProcedure, String result, String developer,
 			String startdate, String enddate, String time, String version,

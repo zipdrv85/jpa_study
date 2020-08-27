@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.inzent.selenium.entity.Env;
 
 @Repository
-public interface EnvRepository extends JpaRepository<Env, Integer> {
+public interface EnvRepository extends JpaRepository<Env, Long> {
 	
 	List<Env> findAll();
 	

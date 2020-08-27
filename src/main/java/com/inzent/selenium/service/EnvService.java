@@ -1,19 +1,21 @@
 package com.inzent.selenium.service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import com.inzent.selenium.controller.SBAdminUIController;
-import com.inzent.selenium.dto.EnvResponseDto;
-import com.inzent.selenium.entity.Env;
-import com.inzent.selenium.repository.EnvRepository;
+import javax.persistence.Column;
 
 import lombok.extern.slf4j.Slf4j;
+
+import org.springframework.beans.BeanUtils;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.inzent.selenium.entity.Child;
+import com.inzent.selenium.entity.Env;
+import com.inzent.selenium.entity.EnvAttr;
+import com.inzent.selenium.entity.Parent;
+import com.inzent.selenium.repository.EnvRepository;
 
 @Slf4j
 @Service
@@ -27,15 +29,9 @@ public class EnvService {
 	}
 	
 	@Transactional(readOnly = true)
-	public List<EnvResponseDto> findAll() {
-		
-		log.debug(envRepository.findAll().toString());
-		
+	public List<Env> findAll() {		
 		return envRepository
-				.findAll()
-				.stream()
-				.map(EnvResponseDto::new)
-				.collect(Collectors.toList());
+				.findAll();
 	}
 	
 	@Transactional(readOnly = true)
@@ -51,9 +47,60 @@ public class EnvService {
 	}
 	
 	@Transactional(readOnly = true)
+	public EnvAttr findAllByEnvidAttr(String url) {
+		return (EnvAttr) envRepository
+				.findByEnvid(url)
+				.getEnvAttr();
+	}
+	
+	@Transactional(readOnly = true)
 	public Env findByVersionAndEnabled(String version, Boolean enabled) {
 		return envRepository
 				.findByVersionAndEnabled(version, enabled);
+	}
+
+	@Transactional
+	public Env save(Env env) {
+		log.debug("envService save");
+		return envRepository.save(env);
+	}
+	
+	@Transactional
+	public Env saveEnv(Env paramEnv) {	
+
+		Env env = envRepository.findByEnvid(paramEnv.getEnvid());
+		
+		log.debug("=================================================");
+		log.debug(env.toString());
+		log.debug(paramEnv.toString());
+		log.debug("=================================================");
+		
+		BeanUtils.copyProperties(paramEnv, env);
+		
+		log.debug("=================================================");
+		log.debug(env.toString());
+		log.debug("=================================================");
+		
+		return envRepository.saveAndFlush(env);
+	}
+
+	@Transactional
+	public Env saveEnvAttrs(String envid, String[] attrName, String[] attrValue) {
+
+		Env env = envRepository.findByEnvid(envid);
+
+		List<EnvAttr> envAttrList = env.getEnvAttr();
+
+		envAttrList.forEach(e -> {
+			int i = envAttrList.indexOf(e);
+			e.setEnvid(envid);
+			e.setAttrName(attrName[i]);
+			e.setAttrValue(attrValue[i]);
+		});
+		
+		env.addEnvAttrs(envid, envAttrList);
+
+		return envRepository.saveAndFlush(env);
 	}
 }
 

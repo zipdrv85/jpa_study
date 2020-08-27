@@ -4,6 +4,39 @@ import javax.servlet.http.HttpServletRequest;
 
 public abstract class Selenium6Service {
 
+	public void case001 ( HttpServletRequest req ){}
+	public void case002 ( HttpServletRequest req ){}
+	public void case003 ( HttpServletRequest req ){}
+	public void case004 ( HttpServletRequest req ){}
+	public void case005 ( HttpServletRequest req ){}
+	public void case006 ( HttpServletRequest req ){}
+	public void case007 ( HttpServletRequest req ){}
+	public void case008 ( HttpServletRequest req ){}
+	public void case009 ( HttpServletRequest req ){}
+	public void case010 ( HttpServletRequest req ){}
+	public void case011 ( HttpServletRequest req ){}
+	public void case012 ( HttpServletRequest req ){}
+	public void case013 ( HttpServletRequest req ){}
+	public void case014 ( HttpServletRequest req ){}
+	public void case015 ( HttpServletRequest req ){}
+	public void case016 ( HttpServletRequest req ){}
+	public void case017 ( HttpServletRequest req ){}
+	public void case018 ( HttpServletRequest req ){}
+	public void case019 ( HttpServletRequest req ){}
+	public void case020 ( HttpServletRequest req ){}
+	public void case021 ( HttpServletRequest req ){}
+	public void case022 ( HttpServletRequest req ){}
+	public void case023 ( HttpServletRequest req ){}
+	public void case024 ( HttpServletRequest req ){}
+	public void case025 ( HttpServletRequest req ){}
+	public void case026 ( HttpServletRequest req ){}
+	public void case027 ( HttpServletRequest req ){}
+	public void case028 ( HttpServletRequest req ){}
+	public void case029 ( HttpServletRequest req ){}
+	public void case030 ( HttpServletRequest req ){}
+	public void case031 ( HttpServletRequest req ){}
+	public void case032 ( HttpServletRequest req ){}
+	public void case033 ( HttpServletRequest req ){}
 	public void case034 ( HttpServletRequest req ){}
 	public void case035 ( HttpServletRequest req ){}
 	public void case036 ( HttpServletRequest req ){}

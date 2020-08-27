@@ -9,7 +9,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class TestRequestDto {
+public class TestRequestDTO {
 
 	private String TEST_ID;			//테스트아이디
 	private String MAIN_CATEGORY;	//대분류

@@ -7,7 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Getter
-public class EnvResponseDto {
+public class EnvResponseDTO {
 
 	private String envid;
 	private String url;
@@ -16,9 +16,9 @@ public class EnvResponseDto {
 	private boolean enabled;
 	private String description;
 	
-	public EnvResponseDto() {}
+	public EnvResponseDTO() {}
 	
-	public EnvResponseDto(Env env) {
+	public EnvResponseDTO(Env env) {
 		envid = env.getEnvid();
 		url = env.getUrl();
 		id = env.getId();

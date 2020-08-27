@@ -20,6 +20,9 @@
 		
 		<!-- Custom scripts for all pages-->
 		<script th:src="@{/js/sb-admin-2.min.js}" ></script>
+		
+		<!-- UserCreate Javascript-->
+		<script th:src="@{/js/customUser.js}" ></script>
 	
 		<th:block layout:fragment="custom_js"></th:block>
     </head>
@@ -27,7 +30,7 @@
     <body id="page-top">
     	<div id="wrapper">
 	        <!-- header fragment 사용 -->
-	        <th:block th:replace="fragment/header :: headerFragment"></th:block>
+	        <th:block th:replace="fragment/left :: leftFragment"></th:block>
 	        
 	        <!-- 
 	            content fragment 사용 
@@ -44,6 +47,9 @@
 	
 			        <!-- footer fragment 사용 -->
 			        <th:block th:replace="fragment/footer :: footerFragment"> </th:block>
+			        
+			        <!-- footer fragment 사용 -->
+			        <th:block th:replace="fragment/modal :: modalFragment"> </th:block>
 		        </div>
 	        </div>
         </div>

@@ -2,10 +2,8 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
-    <!--configFragment �꽑�뼵-->
     <th:block th:fragment="exampleConfigFragment">
 
-        <!-- �씠 �쁺�뿭�뿉 怨듯넻�쑝濡� �궗�슜�븷 css, js library瑜� �꽑�뼵�븳�떎. -->
         <link rel="stylesheet" th:href="@{/css/sb-admin-2.min.css}" >
 
         <link rel="stylesheet" th:href="@{/vendor/fontawesome-free/css/all.min.css}" >
@@ -13,10 +11,8 @@
         
 		<link th:href="@{/vendor/bootstrap/css/bootstrap-toggle.min.css}" rel="stylesheet">
 
-        <!-- Content Page�쓽 CSS fragment �궫�엯 -->
         <th:block layout:fragment="css"></th:block>
 
-        <!-- Content Page�쓽 script fragment �궫�엯 -->
         <th:block layout:fragment="script"></th:block>
         
     </th:block>

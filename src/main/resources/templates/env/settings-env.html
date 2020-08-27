@@ -28,7 +28,8 @@
 								<form id="envForm">
 									<div class="form-group" id="enabledFormGroup">
 										<label for="enabled">ENABLED</label>
-										<input class="form-control" type="checkbox" id="enabled" name="enabled" data-toggle="toggle" />
+										<input class="form-control" type="checkbox" id="enabledView" />
+										<input type="hidden" id="enabled" name="enabled" />
                                     </div>
 									<div class="form-group" id="descriptionFormGroup">
 										<label for="description">DESCRIPTION</label>
@@ -49,6 +50,14 @@
 								</form>
 							</div>
 						</div>
+						<!-- Component Preview-->
+						<div class="sbp-preview">
+							<div class="sbp-preview-content">
+								<form id="envBrowserForm">
+								</form>
+								<a href="#" id="save" class="btn btn-facebook btn-block">save</a>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -63,14 +72,13 @@
 	            success:function(data){
 	            	$("#description").val(data.description);
 
-	            	$("#enabled").prop("checked", data.enabled);
-	            	if(data.enabled) {
-	            		//$(".toggle.btn.btn-primary").prop("class", "toggle btn btn-primary");
-	            		$(".toggle.btn.btn-default.off").prop("class", "toggle btn btn-primary");
-	            	} else {
-	            		//$(".toggle.btn.btn-primary").prop("class", "toggle btn btn-default off");
-	            		$(".toggle.btn.btn-primary").prop("class", "toggle btn btn-default off");
-	            	}
+	            	$("#enabledView").prop("checked", data.enabled);
+            		$("#enabledView").bootstrapToggle();
+            	    $("#enabledView").change(function() {
+            	        $("#enabled").val($(this).prop('checked'));
+            	    });
+            	    $("#enabled").val(data.enabled);
+
 	            	$("#id").val(data.id);
 	            	$("#password").val(data.password);
 	            	$("#url").val(data.url);
@@ -82,6 +90,24 @@
 
 		$('#envCase').change(function(){
 			callEnvCase(this.value);
+		});
+		
+		$('#save').on("click", function() {
+			let queryStringToJson = $("#envForm").serialize();
+			
+			$.ajax({
+				type : 'post', 
+				url : 'settings-browser-env/'+$("#envCase").val()+'/save',
+				data : queryStringToJson,
+				dataType : 'json', 
+				error: function(xhr, status, error) {
+					modalMessage(2, xhr.responseText);
+				},
+				success : function(json){
+					refreshBean();
+					modalMessage(1);
+				}
+			});
 		});
 	})
 </script>

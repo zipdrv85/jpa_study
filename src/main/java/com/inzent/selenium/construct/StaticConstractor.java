@@ -17,14 +17,14 @@ import com.inzent.selenium.service.EnvService;
 public class StaticConstractor {
 	
 	//NOTE AUTOWIRED DI CHANGE
-	public final EnvService envService;
+	private EnvService envService;
 
 	public StaticConstractor(EnvService envService) { 
 		this.envService = envService;
-
+		
 		Env env4 = envService.findByVersionAndEnabled("4.0", true);
 
-		if(env4 != null) {		
+		if(env4 != null) {
 			envid4 = env4.getEnvid();
 			version4 = env4.getVersion();
 			enabled4 = env4.isEnabled();

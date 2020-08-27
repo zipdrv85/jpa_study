@@ -8,9 +8,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.inzent.selenium.dto.TestCaseDto;
-import com.inzent.selenium.dto.TestRequestDto;
-import com.inzent.selenium.dto.TestResponseDto;
+import com.inzent.selenium.dto.TestCaseDTO;
+import com.inzent.selenium.dto.TestRequestDTO;
+import com.inzent.selenium.dto.TestResponseDTO;
 import com.inzent.selenium.entity.TestCase;
 import com.inzent.selenium.repository.TestRepository;
 
@@ -25,16 +25,16 @@ public class TestService {
 	}
 
 	@Transactional
-	public String save(TestRequestDto testRequestDto) {
+	public String save(TestRequestDTO testRequestDto) {
 		return testRepository.save(testRequestDto.toEntity()).getTestId();
 	}
 
 	@Transactional(readOnly = true)
-	public List<TestResponseDto> findAllByVersion(String version) {
+	public List<TestResponseDTO> findAllByVersion(String version) {
 		return testRepository
 				.findAllByVersion(version)
 				.stream()
-				.map(TestResponseDto::new)
+				.map(TestResponseDTO::new)
 				.collect(Collectors.toList());
 	}
 	
@@ -45,17 +45,17 @@ public class TestService {
 	}
 	
 	@Transactional(readOnly = true)
-	public List<TestCaseDto> findAllByVersionForJpql(String version, String attrName) {
+	public List<TestCaseDTO> findAllByVersionForJpql(String version, String attrName) {
 		return testRepository
 				.findAllByVersionForJpql(version, attrName);
 	}
 	
 	@Transactional(readOnly = true)
-	public List<TestResponseDto> findAll() {
+	public List<TestResponseDTO> findAll() {
 		return testRepository
 				.findAll()
 				.stream()
-				.map(TestResponseDto::new)
+				.map(TestResponseDTO::new)
 				.collect(Collectors.toList());
 	}
 	

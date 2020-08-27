@@ -20,7 +20,7 @@ import com.inzent.selenium.com.LoginService;
 import com.inzent.selenium.service.Selenium6Service;
 import com.inzent.selenium.util.PropertyUtil;
 
-class Sun6ServiceImpl implements Selenium6Service {
+class Sun6ServiceImpl extends Selenium6Service {
 
 	WebDriver driver;
 	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");

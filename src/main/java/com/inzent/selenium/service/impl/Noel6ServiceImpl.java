@@ -8,7 +8,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import com.inzent.selenium.com.LoginService;
 import com.inzent.selenium.service.Selenium6Service;
 
-public class Noel6ServiceImpl implements Selenium6Service {
+public class Noel6ServiceImpl extends Selenium6Service {
 
 	public Noel6ServiceImpl () {
 		

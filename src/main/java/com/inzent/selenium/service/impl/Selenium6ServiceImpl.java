@@ -2,285 +2,37 @@ package com.inzent.selenium.service.impl;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+import com.inzent.selenium.com.LoginService;
+import com.inzent.selenium.construct.StaticConstractor;
 import com.inzent.selenium.service.Selenium6Service;
+import com.inzent.selenium.util.PropertyUtil;
+import com.inzent.selenium.util.StringUtil;
 
-public class Selenium6ServiceImpl implements Selenium6Service {
+public class Selenium6ServiceImpl extends Selenium6Service {
 
 	private final ChromeOptions chromeDriver6Options;
+	private final String base_url = StringUtil.NVL(StaticConstractor.url4, PropertyUtil.getConfigValue("selenium.domain"));
 	
 	public Selenium6ServiceImpl (ChromeOptions chromeDriver6Options) {
 		this.chromeDriver6Options = chromeDriver6Options;
 	}
-
+	
 	@Override
-	public void case034(HttpServletRequest req) {
-		// TODO Auto-generated method stub
+	public void case001 ( HttpServletRequest req ){
+		ChromeDriver driver = new ChromeDriver(chromeDriver6Options);
+		
+		try {
+			
+			LoginService.Login6(driver, base_url);
+			
+		} catch (Exception e) {
+			
+		} finally {
+			driver.quit();
+		}
 		
 	}
-
-	@Override
-	public void case035(HttpServletRequest req) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void case036(HttpServletRequest req) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void case037(HttpServletRequest req) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void case038(HttpServletRequest req) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void case039(HttpServletRequest req) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void case040(HttpServletRequest req) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void case041(HttpServletRequest req) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void case042(HttpServletRequest req) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void case043(HttpServletRequest req) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void case044(HttpServletRequest req) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void case045(HttpServletRequest req) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void case046(HttpServletRequest req) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void case047(HttpServletRequest req) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void case048(HttpServletRequest req) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void case049(HttpServletRequest req) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void case050(HttpServletRequest req) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void case051(HttpServletRequest req) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void case052(HttpServletRequest req) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void case053(HttpServletRequest req) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void case054(HttpServletRequest req) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void case055(HttpServletRequest req) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void case056(HttpServletRequest req) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void case057(HttpServletRequest req) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void case058(HttpServletRequest req) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void case059(HttpServletRequest req) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void case060(HttpServletRequest req) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void case061(HttpServletRequest req) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void case062(HttpServletRequest req) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void case063(HttpServletRequest req) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void case064(HttpServletRequest req) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void case065(HttpServletRequest req) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void case066(HttpServletRequest req) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void case067(HttpServletRequest req) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void case068(HttpServletRequest req) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void case069(HttpServletRequest req) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void case070(HttpServletRequest req) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void case071(HttpServletRequest req) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void case072(HttpServletRequest req) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void case073(HttpServletRequest req) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void case074(HttpServletRequest req) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void case075(HttpServletRequest req) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void case076(HttpServletRequest req) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void case077(HttpServletRequest req) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void case078(HttpServletRequest req) {
-		// TODO Auto-generated method stub
-		
-	}	
 }

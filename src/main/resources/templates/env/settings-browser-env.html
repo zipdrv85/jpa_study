@@ -14,39 +14,20 @@
 			<!-- Default Bootstrap Form Controls-->
 			<div id="default">
 				<div class="card mb-4">
-				<div class="card-header">환경 설정</div>
+				<div class="card-header">브라우저 환경 설정</div>
 					<div class="card-body">
 						<div class="form-group">
-							<label for="envCase">환경 설정 명</label>
+							<label for="envCase">브라우저 환경 설정 명</label>
 							<select class="form-control" id="envCase">
 								<option th:each="envCase : ${envCase}" th:value="${envCase.envid}" th:text="${envCase.description}" th:selected="(${envCase.enabled} == true)"></option>
 							</select>
 						</div>
-							<!-- Component Preview-->
+						<!-- Component Preview-->
 						<div class="sbp-preview">
 							<div class="sbp-preview-content">
-								<form id="envForm">
-									<div class="form-group" id="enabledFormGroup">
-										<label for="enabled">ENABLED</label>
-										<input class="form-control" type="checkbox" id="enabled" name="enabled" data-toggle="toggle" />
-                                    </div>
-									<div class="form-group" id="descriptionFormGroup">
-										<label for="description">DESCRIPTION</label>
-										<input class="form-control" id="description" type="input" placeholder="인젠트 연구소 개발서버 4.0" name="description" />
-									</div>
-									<div class="form-group">
-										<label for="urlFormControlInput">URL</label>
-										<input class="form-control" id="url" type="input" placeholder="http://ecm.inzent.com" name="url" />
-									</div>
-									<div class="form-group">
-										<label for="id">ID</label>
-										<input class="form-control" id="id" type="input" placeholder="SUPER" name="id" />
-									</div>
-									<div class="form-group">
-										<label for="password">P/W</label>
-										<input class="form-control" id="password" type="input" placeholder="SUPER" name="password" />
-									</div>
+								<form id="envBrowserForm">
 								</form>
+								<a href="#" id="save" class="btn btn-facebook btn-block">save</a>
 							</div>
 						</div>
 					</div>
@@ -56,33 +37,124 @@
 	</div>
 <script>
 	$(document).ready(function ()  {
-		let callEnvCase = function (envid) {
+		
+		let callEnvAttrCase = function (envid) {
 	        $.ajax({
-	            url:'./settings-env/'+envid,
-	            //url:'./settings-env/123',
+	            url:'./settings-browser-env/'+envid,
 	            success:function(data){
-	            	$("#description").val(data.description);
+	            	
+	            	$("#envBrowserForm").empty();
+	            	
+	            	console.log(data);
+	            	
+	            	if(data != "") {
+		            	data.envAttr.forEach(element => {	            		
+		            		let formGroup = document.createElement('div');
+		            		let descriptionDiv = document.createElement('div');
+		            		let description = document.createElement('input');
+		            		let checkboxDiv = document.createElement('div');
+		            		let checkbox = document.createElement('input');
+		            		let checkboxInput = document.createElement('input');
+		            		let inputbox = document.createElement('input');
+		            		
+		            		formGroup.setAttribute("class", "form-group row");
+		            		formGroup.setAttribute("id", element.attrName);
+							
+		            		descriptionDiv.setAttribute("class", "col-sm-10 mb-3 mb-sm-0");
+		            		
+		            		description.setAttribute("placeholder", "인젠트 연구소 개발서버 4.0");
+		            		description.setAttribute("type", "input");
+		            		description.setAttribute("class", "form-control");
+		            		description.setAttribute("id", element.attrName+"attrName");
+		            		description.setAttribute("name", "attrName");
+		            		description.setAttribute("value", element.attrName);
+		            		description.setAttribute("readonly", "true");
+		            		description.setAttribute("style", "background-color: #eaecf4;opacity: 1;");
+		            		description.setAttribute("data-toggle", "tooltip");
+		            		description.setAttribute("data-placement", "top");
+		            		description.setAttribute("title", element.description);
 
-	            	$("#enabled").prop("checked", data.enabled);
-	            	if(data.enabled) {
-	            		//$(".toggle.btn.btn-primary").prop("class", "toggle btn btn-primary");
-	            		$(".toggle.btn.btn-default.off").prop("class", "toggle btn btn-primary");
-	            	} else {
-	            		//$(".toggle.btn.btn-primary").prop("class", "toggle btn btn-default off");
-	            		$(".toggle.btn.btn-primary").prop("class", "toggle btn btn-default off");
+		            		descriptionDiv.append(description);
+		            		
+		            		checkboxDiv.setAttribute("class", "col-sm-2");
+							
+		            		if(element.uioption.toLowerCase() == "checkbox") {
+		            			checkboxInput.setAttribute("type", "hidden");
+		            			checkboxInput.setAttribute("id", element.attrName+"inputAttrValue");
+		            			checkboxInput.setAttribute("name", "attrValue");
+		            			checkboxInput.setAttribute("value", element.attrValue);
+		            			
+			            		checkbox.setAttribute("type", "checkbox");
+			            		checkbox.setAttribute("class", "form-control");
+			            		checkbox.setAttribute("id", element.attrName+"attrValue");
+
+			            		if(element.attrValue.toLowerCase() === "true") {
+			            			checkbox.setAttribute("checked", "");
+			            		}
+			            		checkbox.setAttribute("data-toggle", "toggle");
+
+			            		checkboxDiv.append(checkbox);
+			            		checkboxDiv.append(checkboxInput);
+
+			            		formGroup.append(descriptionDiv);
+			            		formGroup.append(checkboxDiv);
+
+			            		$("#envBrowserForm").append(formGroup);
+
+			            		$("#"+element.attrName+"attrValue").bootstrapToggle();
+			            	    $("#"+element.attrName+"attrValue").change(function() {
+			            	        $("#"+element.attrName+"inputAttrValue").val($(this).prop('checked'));
+			            	    });
+		            		} else if(element.uioption.toLowerCase() == "input") {
+		            			
+		            			formGroup.setAttribute("class", "form-group");
+		            			descriptionDiv.setAttribute("class", "");
+		            			
+		            			inputbox.setAttribute("type", "input");
+		            			inputbox.setAttribute("class", "form-control");
+		            			inputbox.setAttribute("id", element.attrName+"attrName");
+		            			inputbox.setAttribute("name", "attrValue");
+		            			inputbox.setAttribute("value", element.attrValue);
+		            			
+			            		formGroup.append(descriptionDiv);
+			            		formGroup.append(inputbox);
+			            		
+			            		$("#envBrowserForm").append(formGroup);
+		            		}
+		            	});
 	            	}
-	            	$("#id").val(data.id);
-	            	$("#password").val(data.password);
-	            	$("#url").val(data.url);
+	            	
+	            	$('[data-toggle="tooltip"]').tooltip();
 	            }
 	        })
 		};
 
-		callEnvCase($('#envCase').val());
+		callEnvAttrCase($('#envCase').val());
 
 		$('#envCase').change(function(){
-			callEnvCase(this.value);
+			callEnvAttrCase(this.value);
 		});
+
+		$('#save').on("click", function() {
+			let queryStringToJson = $("#envBrowserForm").serialize();
+			
+			console.log(queryStringToJson);
+			
+			$.ajax({
+				type : 'post', 
+				url : 'settings-browser-env/'+$("#envCase").val()+'/save',
+				data : queryStringToJson, 
+				dataType : 'json', 
+				error: function(xhr, status, error) {
+					modalMessage(2, xhr.responseText);
+				},
+				success : function(json){
+					refreshBean();
+					modalMessage(1);
+				}
+			});
+		});
+
 	})
 </script>
 </div>

@@ -15,7 +15,7 @@ import org.openqa.selenium.interactions.Actions;
 import com.inzent.selenium.com.LoginService;
 import com.inzent.selenium.service.Selenium6Service;
 
-public class Oh6ServiceImpl implements Selenium6Service {
+public class Oh6ServiceImpl extends Selenium6Service {
 
    public Oh6ServiceImpl () {
       

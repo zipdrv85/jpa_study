@@ -4,7 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.inzent.selenium.service.Selenium6Service;
 
-public class John6ServiceImpl implements Selenium6Service {
+public class John6ServiceImpl extends Selenium6Service {
 
 	public John6ServiceImpl () {
 		

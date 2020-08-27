@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.inzent.selenium.service.Selenium4Service;
 import com.inzent.selenium.service.Selenium6Service;
 import com.inzent.selenium.util.PropertyUtil;
-import com.inzent.selenium.vo.User;
+import com.inzent.selenium.vo.UserVO;
 
 @Controller
 @RequestMapping("/selenium")
@@ -63,7 +63,7 @@ public class SeleniumUrlController {
 			method.invoke(serviceImpl, request);
 		}
 
-        User user = new User("kkaok", "테스트", "web") ;
+        UserVO user = new UserVO("kkaok", "테스트", "web") ;
         model.addAttribute("user", user);
 
 		return "test";

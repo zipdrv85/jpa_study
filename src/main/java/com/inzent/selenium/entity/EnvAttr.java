@@ -4,20 +4,16 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 import lombok.Getter;
-import lombok.NonNull;
+import lombok.Setter;
 
 @Table(name = "envattr")
 @Entity
 @Getter
+@Setter
 public class EnvAttr implements Serializable {
 
 	/**
@@ -25,37 +21,46 @@ public class EnvAttr implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private EnvAttr() { }
-
-	@NonNull
-	@Id
-	@Column(name = "envid", nullable = false, updatable = false)
-	private String envid;
+	public EnvAttr() { }
 	
-	@NonNull
 	@Id
-	@Column(name = "ATTR_NAME", nullable = false, updatable = false)
+	@Column(name = "envid", nullable = false)
+	private String envid;
+
+	@Id
+	@Column(name = "ATTR_NAME", nullable = false)
 	private String attrName;	//속성명
 
 	private String attrValue;	//속성 이름
-	
+
+	private String uioption;	//ui에서 어떻게 보여줄지옵션
+
 	private String description;	//속성 설명
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "envid", nullable = false)
-	@JsonBackReference
-	private Env env;
+	//@ManyToOne(fetch = FetchType.LAZY)
+	//@JoinColumn(name = "envid", nullable = false)
+	//@JsonBackReference
+	//private Env env;
 
 	//연관관계 메소드 (FK 보단 비즈니스 관점에서 위치한다)
+	/*
 	public void setEnv(Env env) {
 		this.env = env;
 		env.getEnvAttr().add(this);
+	}*/
+
+	public void updateEnvAttr(EnvAttr envAttr) {
+		this.envid = envAttr.getEnvid();
+		this.attrName = envAttr.getAttrName();
+		this.attrValue = envAttr.getAttrValue();
+		this.uioption = envAttr.getUioption();
+		this.description = envAttr.getDescription();
 	}
 
 	@Override
 	public String toString() {
 		return "EnvAttr [envid=" + envid + ", attrName=" + attrName
-				+ ", attrValue=" + attrValue + ", description=" + description
-				+ ", env=" + env + "]";
+				+ ", attrValue=" + attrValue + ", uioption=" + uioption
+				+ ", description=" + description + "]";
 	}
 }
