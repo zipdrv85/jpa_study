@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.inzent.selenium.construct.StaticConstractor;
 import com.inzent.selenium.entity.Child;
 import com.inzent.selenium.entity.Env;
 import com.inzent.selenium.entity.EnvAttr;
@@ -75,13 +76,18 @@ public class EnvService {
 		log.debug(paramEnv.toString());
 		log.debug("=================================================");
 		
-		BeanUtils.copyProperties(paramEnv, env);
+		BeanUtils.copyProperties(paramEnv, env, "envAttr");
 		
 		log.debug("=================================================");
 		log.debug(env.toString());
 		log.debug("=================================================");
 		
-		return envRepository.saveAndFlush(env);
+		Env rtnEnv = envRepository.saveAndFlush(env);
+		
+		//static constractor Value Change
+		StaticConstractor.setStaticConstractor(rtnEnv);
+		
+		return rtnEnv;
 	}
 
 	@Transactional

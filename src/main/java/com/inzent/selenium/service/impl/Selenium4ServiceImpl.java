@@ -40,6 +40,8 @@ public class Selenium4ServiceImpl extends Selenium4Service {
 			
 		} catch (Exception e) {
 			
+			log.debug(e.getMessage());
+			
 		} finally {
 			driver.quit();
 		}

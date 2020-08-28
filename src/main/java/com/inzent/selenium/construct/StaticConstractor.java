@@ -55,6 +55,45 @@ public class StaticConstractor {
 		log.debug(description4);
 	}
 	
+	public static void setStaticConstractor(Env env) {
+		
+		log.debug(env.toString());
+
+		if("4.0".equals(env.getVersion())) {
+			envid4 = env.getEnvid();
+			version4 = env.getVersion();
+			enabled4 = env.isEnabled();
+			url4 = env.getUrl();
+			id4 = env.getId();
+			password4 = env.getPassword();
+			description4 = env.getDescription();
+			envid4Attr = env.getEnvAttr();
+		}
+		
+		if("6.0".equals(env.getVersion())) {
+			envid6 = env.getEnvid();
+			version6 = env.getVersion();
+			enabled6 = env.isEnabled();
+			url6 = env.getUrl();
+			id6 = env.getId();
+			password6 = env.getPassword();
+			description6 = env.getDescription();
+			envid6Attr = env.getEnvAttr();
+		}
+		
+		log.debug(envid4);
+		log.debug(version4);
+		log.debug(id4);
+		log.debug(password4);
+		log.debug(description4);
+		
+		log.debug(envid6);
+		log.debug(version6);
+		log.debug(id6);
+		log.debug(password6);
+		log.debug(description6);
+	}
+
 	public static String envid4;
 	public static String version4;
 	public static boolean enabled4;

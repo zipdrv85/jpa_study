@@ -30,6 +30,8 @@
 										<label for="enabled">ENABLED</label>
 										<input class="form-control" type="checkbox" id="enabledView" />
 										<input type="hidden" id="enabled" name="enabled" />
+										<input type="hidden" id="version" name="version" />
+										<input type="hidden" id="targetUrl" name="targetUrl" />
                                     </div>
 									<div class="form-group" id="descriptionFormGroup">
 										<label for="description">DESCRIPTION</label>
@@ -73,7 +75,8 @@
 	            	$("#description").val(data.description);
 
 	            	$("#enabledView").prop("checked", data.enabled);
-            		$("#enabledView").bootstrapToggle();
+	            	let toggleKey = data.enabled === true ? 'on' : 'off';
+            		$("#enabledView").bootstrapToggle(toggleKey);
             	    $("#enabledView").change(function() {
             	        $("#enabled").val($(this).prop('checked'));
             	    });
@@ -82,6 +85,9 @@
 	            	$("#id").val(data.id);
 	            	$("#password").val(data.password);
 	            	$("#url").val(data.url);
+	            	
+	            	$("#version").val(data.version);
+	            	$("#targetUrl").val(data.targetUrl);
 	            }
 	        })
 		};

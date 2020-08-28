@@ -22,9 +22,9 @@ public class SeleniumWebDriverConfig {
 	@Bean(name = "chromeDriverOptions" )
 	public ChromeOptions chromeDriverOptions () {
 		
-		log.debug(System.getProperty("user.dir")+PropertyUtil.getConfigValue("selenium.webDriverPath8.3"));
+		log.debug(System.getProperty("user.dir")+PropertyUtil.getConfigValue("selenium.webDriverPath"));
 		
-		System.setProperty(PropertyUtil.getConfigValue("selenium.webDriverName"), System.getProperty("user.dir")+PropertyUtil.getConfigValue("selenium.webDriverPath8.3"));
+		System.setProperty(PropertyUtil.getConfigValue("selenium.webDriverName"), System.getProperty("user.dir")+PropertyUtil.getConfigValue("selenium.webDriverPath"));
 		
 		ChromeOptions options = new ChromeOptions();
 
