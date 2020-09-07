@@ -14,7 +14,6 @@ import com.inzent.selenium.entity.Parent;
 import com.inzent.selenium.repository.EnvRepository;
 import com.inzent.selenium.repository.ParentRepository;
 
-@Slf4j
 @Service
 public class ParentTestService {
 

@@ -9,7 +9,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
 
-import com.inzent.selenium.com.LoginService;
 import com.inzent.selenium.service.Selenium4Service;
 import com.inzent.selenium.util.ETCUtil;
 import com.inzent.selenium.util.SeleniumUtil;
@@ -58,7 +57,7 @@ public class Jhc4ServiceImpl extends Selenium4Service {
 	@Override
 	public void case037(HttpServletRequest req) {
 		// TODO 즐겨찾기 선택
-		LoginService.Login4(driver, base_url);
+		//LoginService.Login4(driver, base_url);
 
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		WebElement checker;
@@ -130,7 +129,7 @@ public class Jhc4ServiceImpl extends Selenium4Service {
 	@Override
 	public void case038(HttpServletRequest req) {
 		// TODO 즐겨찾기 해제
-		LoginService.Login4(driver, base_url);
+		//LoginService.Login4(driver, base_url);
 
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		WebElement checker;
@@ -359,7 +358,7 @@ public class Jhc4ServiceImpl extends Selenium4Service {
 				      
 		*/
 		
-		LoginService.Login4(driver, base_url);
+		//LoginService.Login4(driver, base_url);
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 
 		//		액션 선언 및 바인딩
@@ -556,7 +555,7 @@ public class Jhc4ServiceImpl extends Selenium4Service {
 			3. 이력 탭 클릭
 		 */
 
-		LoginService.Login4(driver, base_url);
+		//LoginService.Login4(driver, base_url);
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		WebElement checker;
 

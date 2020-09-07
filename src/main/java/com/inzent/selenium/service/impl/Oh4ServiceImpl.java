@@ -5,7 +5,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import com.inzent.selenium.com.LoginService;
 import com.inzent.selenium.service.Selenium4Service;
 
 public class Oh4ServiceImpl extends Selenium4Service {
@@ -19,7 +18,7 @@ public class Oh4ServiceImpl extends Selenium4Service {
 		String startUrl = "http://192.168.21.61:9080/xedrm/app/";
 		
 		WebDriver driver = new ChromeDriver();
-		LoginService.Login4(driver, startUrl);
+		//LoginService.Login4(driver, startUrl);
 
 	}
 

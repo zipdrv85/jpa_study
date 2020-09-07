@@ -5,16 +5,14 @@ import javax.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.springframework.beans.factory.annotation.Autowired;
 
-import com.inzent.selenium.com.LoginService;
+import com.inzent.selenium.conf.SeleniumWebDriverConfig;
 import com.inzent.selenium.construct.StaticConstractor;
-import com.inzent.selenium.controller.SBAdminUIController;
 import com.inzent.selenium.service.Selenium4Service;
+import com.inzent.selenium.service.executor.LoginExecutor;
 import com.inzent.selenium.util.PropertyUtil;
 import com.inzent.selenium.util.StringUtil;
 
@@ -22,22 +20,43 @@ import com.inzent.selenium.util.StringUtil;
 @Slf4j
 public class Selenium4ServiceImpl extends Selenium4Service {
 
-	private final ChromeOptions chromeDriverOptions;
+	private final ChromeOptions chromeDriver4Options;
+	
+	private LoginExecutor loginExecutor = new LoginExecutor();
+
 	private final String base_url = StringUtil.NVL(StaticConstractor.url4, PropertyUtil.getConfigValue("selenium.domain"));
 	private final String BOOKMARK_CHECKED = "fa fa-star bookmarked";
 
-	public Selenium4ServiceImpl (ChromeOptions chromeDriverOptions) {
-		this.chromeDriverOptions = chromeDriverOptions;
+	public Selenium4ServiceImpl (ChromeOptions chromeDriver4Options) {		
+		this.chromeDriver4Options = chromeDriver4Options;
 	}
 
 	@Override
 	public void case001 ( HttpServletRequest req ){
-		ChromeDriver driver = new ChromeDriver(chromeDriverOptions);
+		ChromeDriver driver = new ChromeDriver(chromeDriver4Options);
 		
 		try {
 			
-			LoginService.Login4(driver, base_url);
+			loginExecutor.Login4(driver, base_url);
+
+		} catch (Exception e) {
 			
+			log.debug(e.getMessage());
+			
+		} finally {
+			driver.quit();
+		}
+	}
+	
+	@Override
+	public void case002 ( HttpServletRequest req ){
+		ChromeDriver driver = new ChromeDriver(chromeDriver4Options);
+		
+		try {
+
+			loginExecutor.Login4(driver, base_url);
+			
+			loginExecutor.Logout4(driver);
 		} catch (Exception e) {
 			
 			log.debug(e.getMessage());
@@ -51,10 +70,10 @@ public class Selenium4ServiceImpl extends Selenium4Service {
 	@Override
 	public void case037(HttpServletRequest req) {
 
-		ChromeDriver driver = new ChromeDriver(chromeDriverOptions);
+		ChromeDriver driver = new ChromeDriver(chromeDriver4Options);
 
 		// TODO 즐겨찾기 선택
-		LoginService.Login4(driver, base_url);
+		loginExecutor.Login4(driver, base_url);
 
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		WebElement checker;

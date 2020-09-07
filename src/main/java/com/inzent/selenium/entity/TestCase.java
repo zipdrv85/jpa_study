@@ -2,22 +2,31 @@ package com.inzent.selenium.entity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.springframework.data.domain.Persistable;
+
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 @Table(name = "testCase")
 @Entity
 @Getter
-public class TestCase {
+@Setter
+@Data
+public class TestCase implements Persistable<UUID>{
 	
 	public TestCase() {}
 	
@@ -65,9 +74,11 @@ public class TestCase {
 	@Column(name = "version")
 	private String version;			//버전
 	
-	@OneToMany(mappedBy = "testCase")
+	//@OneToMany(mappedBy = "testCase")
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+	@JoinColumn(name = "test_id")
 	@JsonManagedReference
-	List<TestCaseAttr> testCaseAttr;
+	List<TestCaseAttr> testCaseAttr = new ArrayList<TestCaseAttr>();
 
 	@Override
 	public String toString() {
@@ -76,4 +87,20 @@ public class TestCase {
 				+ ", BEFORE_PROCEDURE=" + beforeProcedure + ", RESULT=" + result + ", DEVELOPER=" + developer
 				+ ", STARTDATE=" + startdate + ", ENDDATE=" + enddate + ", TIME=" + time + ", VERSION=" + version + "]";
 	}
+	
+	public void addTestCaseAttrs(String testId, List<TestCaseAttr> testCaseAttrs) {
+		this.testId = testId;
+		this.testCaseAttr.addAll(testCaseAttrs);
+	}
+	
+	public void addNewTestCaseAttr(String testId, TestCaseAttr testCaseAttr) {
+		this.testId = testId;
+		this.testCaseAttr.add(testCaseAttr);
+	}
+
+	@Override
+	public UUID getId() { return null; }
+
+	@Override
+	public boolean isNew() { return true; }
 }

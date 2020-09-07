@@ -3,7 +3,6 @@ package com.inzent.selenium.service.impl;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -13,7 +12,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import com.inzent.selenium.com.LoginService;
 import com.inzent.selenium.service.Selenium4Service;
 import com.inzent.selenium.util.ETCUtil;
 import com.inzent.selenium.util.PropertyUtil;
@@ -172,7 +170,7 @@ public class Noel4ServiceImpl extends Selenium4Service {
 		String startUrl = PropertyUtil.getConfigValue("selenium.domain") + "/xedrm/app/";
 
 		WebDriver driver = new ChromeDriver();
-		LoginService.Login4(driver, startUrl);
+		//LoginService.Login4(driver, startUrl);
 
 		try {
 			Thread.sleep(1000);

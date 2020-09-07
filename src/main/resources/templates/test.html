@@ -6,7 +6,7 @@
 >    
 <head>
 	<meta charset="UTF-8" />
-	<title>tables</title>
+	<title>result</title>
 	<th:block layout:fragment="custom_css">
 	<link rel="stylesheet" th:href="@{/vendor/datatables/dataTables.bootstrap4.min.css}" >
 	</th:block>
@@ -14,9 +14,53 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid" layout:fragment="content">
-			<span th:text="${user.userId}"></span><br/>
-			<span th:text="${user.name}"></span><br/>
-			<span th:text="${user.authType}"></span><br/>
-		</div>
+
+          <!-- Page Heading -->
+          <h1 class="h3 mb-2 text-gray-800">테스트 자동화</h1>
+          <p class="mb-4">EDM 웹 UI 테스트 자동화 모듈 입니다.</p>
+
+          <!-- DataTales Example -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">단위테스트 결과</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table" >
+					<thead>
+						<tr>
+							<th style="width:10%">테스트ID</th>
+							<th>버전</th>
+							<th style="width:30%">성공여부</th>
+							<th style="width:30%">실행시간</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td th:text="${result.testId}"></td>
+							<td th:text="${result.version}"></td>
+							<td>
+		                      <button type="button" class="btn btn-outline-success btn-rounded waves-effect" th:style="${#strings.equals(result.attrValue, 'true') ? 'display:block' : 'display:none'}"><i class="fas fa-cogs pr-2"
+		                      aria-hidden="true"></i>Success</button>
+		                      <button type="button" class="btn btn-outline-danger btn-rounded waves-effect" th:style="${#strings.equals(result.attrValue, 'true') ? 'display:none' : 'display:block'}"><i class="fas fa-train pr-2"
+		                      aria-hidden="true"></i>Danger</button>
+							</td>
+							<td th:text="${result.executeTime}"></td>
+						</tr>
+					</tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- /.container-fluid -->
+      
+	<th:block layout:fragment="custom_js">		
+		<!-- Page level custom scripts -->
+		<script th:src="@{/vendor/datatables/jquery.dataTables.min.js}" ></script>
+		<script th:src="@{/vendor/datatables/dataTables.bootstrap4.min.js}" ></script>
+		<script th:src="@{/js/demo/dataTables-demo.js}" ></script>
+	</th:block>
 </body>
 </html>

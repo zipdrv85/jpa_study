@@ -7,10 +7,12 @@ import javax.persistence.Column;
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.beans.BeanUtils;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.inzent.selenium.conf.SeleniumWebDriverConfig;
 import com.inzent.selenium.construct.StaticConstractor;
 import com.inzent.selenium.entity.Child;
 import com.inzent.selenium.entity.Env;
@@ -85,7 +87,7 @@ public class EnvService {
 		Env rtnEnv = envRepository.saveAndFlush(env);
 		
 		//static constractor Value Change
-		StaticConstractor.setStaticConstractor(rtnEnv);
+		StaticConstractor.setStaticConstractor(rtnEnv);	
 		
 		return rtnEnv;
 	}
@@ -103,10 +105,15 @@ public class EnvService {
 			e.setAttrName(attrName[i]);
 			e.setAttrValue(attrValue[i]);
 		});
-		
+
 		env.addEnvAttrs(envid, envAttrList);
 
-		return envRepository.saveAndFlush(env);
+		Env rtnEnv = envRepository.saveAndFlush(env);
+		
+		//static constractor Value Change
+		StaticConstractor.setStaticConstractor(rtnEnv);
+		
+		return rtnEnv;
 	}
 }
 

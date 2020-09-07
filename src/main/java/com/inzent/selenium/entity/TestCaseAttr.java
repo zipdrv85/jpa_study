@@ -1,23 +1,21 @@
 package com.inzent.selenium.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lombok.Getter;
 import lombok.NonNull;
+import lombok.Setter;
 
 @Table(name = "testCaseAttr")
 @Entity
 @Getter
+@Setter
 public class TestCaseAttr implements Serializable {
 	
 	/**
@@ -25,12 +23,19 @@ public class TestCaseAttr implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private TestCaseAttr() {}
+	public TestCaseAttr() {}
+	
+	public TestCaseAttr(TestCaseAttr testCaseAttrParam) {
+		this.testId = testCaseAttrParam.getTestId();
+		this.attrName = testCaseAttrParam.getAttrName();
+		this.attrValue = testCaseAttrParam.getAttrValue();
+		this.description = testCaseAttrParam.getDescription();		
+	}
 		
 	@NonNull
 	@Id
-	@Column(name = "TEST_ID", nullable = false, updatable = false)
-	private String TEST_ID;		//테스트아이디
+	@Column(name = "test_id", nullable = false, updatable = false)
+	private String testId;		//테스트아이디
 	
 	@NonNull
 	@Id
@@ -41,21 +46,31 @@ public class TestCaseAttr implements Serializable {
 	
 	private String description;	//속성 설명
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "TEST_ID")
-	@JsonBackReference
-	private TestCase testCase;
+	@Override
+	public String toString() {
+		return "TestCaseAttr [testId=" + testId + ", attrName=" + attrName
+				+ ", attrValue=" + attrValue + ", description=" + description
+				+ "]";
+	}
+
+	public TestCaseAttr(@NonNull String testId, @NonNull String attrName,
+			String attrValue, String description) {
+		super();
+		this.testId = testId;
+		this.attrName = attrName;
+		this.attrValue = attrValue;
+		this.description = description;
+	}
+
+	//@ManyToOne(fetch = FetchType.LAZY)
+	//@JoinColumn(name = "TEST_ID")
+	//@JsonBackReference
+	//private TestCase testCase;
 	
 	//연관관계 메소드 (FK 보단 비즈니스 관점에서 위치한다)
+	/*
 	public void setTestCase(TestCase testCase) {
 		this.testCase = testCase;
 		testCase.getTestCaseAttr().add(this);
-	}
-
-	@Override
-	public String toString() {
-		return "TestCaseAttr [TEST_ID=" + TEST_ID + ", attrName=" + attrName
-				+ ", attrValue=" + attrValue + ", description=" + description
-				+ ", testCase=" + testCase + "]";
-	}
+	}*/
 }

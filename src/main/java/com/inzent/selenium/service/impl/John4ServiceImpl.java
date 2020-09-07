@@ -15,7 +15,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 
-import com.inzent.selenium.com.LoginService;
 import com.inzent.selenium.service.Selenium4Service;
 import com.inzent.selenium.util.PropertyUtil;
 
@@ -30,7 +29,7 @@ public class John4ServiceImpl extends Selenium4Service {
 		String startUrl = PropertyUtil.getConfigValue("selenium.domain") + "/xedrm/app/";
 
 		WebDriver driver = new ChromeDriver();
-		LoginService.Login4(driver, startUrl);
+		//LoginService.Login4(driver, startUrl);
 
 		try {
 			Thread.sleep(1000);
@@ -144,7 +143,7 @@ public class John4ServiceImpl extends Selenium4Service {
 		String startUrl = PropertyUtil.getConfigValue("selenium.domain") + "/xedrm/app/";
 
 		WebDriver driver = new ChromeDriver();
-		LoginService.Login4(driver, startUrl);
+		//LoginService.Login4(driver, startUrl);
 
 		try {
 			Thread.sleep(1000);
@@ -362,7 +361,7 @@ public class John4ServiceImpl extends Selenium4Service {
 		String startUrl = PropertyUtil.getConfigValue("selenium.domain") + "/xedrm/app/";
 
 		WebDriver driver = new ChromeDriver();
-		LoginService.Login4(driver, startUrl);
+		//LoginService.Login4(driver, startUrl);
 
 		try {
 			Thread.sleep(1000);
@@ -473,7 +472,7 @@ public class John4ServiceImpl extends Selenium4Service {
 		String startUrl = PropertyUtil.getConfigValue("selenium.domain") + "/xedrm/app/";
 
 		WebDriver driver = new ChromeDriver();
-		LoginService.Login4(driver, startUrl);
+		//LoginService.Login4(driver, startUrl);
 
 		try {
 			Thread.sleep(1000);
@@ -585,7 +584,7 @@ public class John4ServiceImpl extends Selenium4Service {
 		String startUrl = PropertyUtil.getConfigValue("selenium.domain") + "/xedrm/app/";
 
 		WebDriver driver = new ChromeDriver();
-		LoginService.Login4(driver, startUrl);
+		//LoginService.Login4(driver, startUrl);
 
 		try {
 			Thread.sleep(1000);
@@ -752,7 +751,7 @@ public class John4ServiceImpl extends Selenium4Service {
 		String startUrl = PropertyUtil.getConfigValue("selenium.domain") + "/xedrm/app/";
 
 		WebDriver driver = new ChromeDriver();
-		LoginService.Login4(driver, startUrl);
+		//LoginService.Login4(driver, startUrl);
 
 		try {
 			Thread.sleep(1000);

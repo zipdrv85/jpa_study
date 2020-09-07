@@ -49,11 +49,11 @@ public class Env implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "envid", nullable = false)
+	@Column(name = "envid", nullable = false, updatable = false)
 	private String envid;
-	@Column(name = "version", nullable = false)
+	@Column(name = "version", nullable = false, updatable = false)
 	private String version;
-	@Column(name = "enabled", nullable = false)
+	@Column(name = "enabled", nullable = false, updatable = false)
 	private boolean enabled;
 	private String url;
 	private String targetUrl;
@@ -83,7 +83,6 @@ public class Env implements Serializable {
 
 	public void addEnvAttrs(String envid, List<EnvAttr> envAttrs) {
 		this.envid = envid;
-		envAttr.clear();
 		envAttr.addAll(envAttrs);
 	}
 }

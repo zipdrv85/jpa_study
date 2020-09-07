@@ -103,14 +103,14 @@
 			
 			$.ajax({
 				type : 'post', 
-				url : 'settings-browser-env/'+$("#envCase").val()+'/save',
+				url : 'settings-env/'+$("#envCase").val()+'/save',
 				data : queryStringToJson,
 				dataType : 'json', 
 				error: function(xhr, status, error) {
 					modalMessage(2, xhr.responseText);
 				},
 				success : function(json){
-					refreshBean();
+					//refreshBean();
 					modalMessage(1);
 				}
 			});

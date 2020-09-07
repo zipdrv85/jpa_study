@@ -24,11 +24,11 @@ public class EnvAttr implements Serializable {
 	public EnvAttr() { }
 	
 	@Id
-	@Column(name = "envid", nullable = false)
+	@Column(name = "envid", nullable = false, updatable = false)
 	private String envid;
 
 	@Id
-	@Column(name = "ATTR_NAME", nullable = false)
+	@Column(name = "ATTR_NAME", nullable = false, updatable = false)
 	private String attrName;	//속성명
 
 	private String attrValue;	//속성 이름
@@ -48,14 +48,6 @@ public class EnvAttr implements Serializable {
 		this.env = env;
 		env.getEnvAttr().add(this);
 	}*/
-
-	public void updateEnvAttr(EnvAttr envAttr) {
-		this.envid = envAttr.getEnvid();
-		this.attrName = envAttr.getAttrName();
-		this.attrValue = envAttr.getAttrValue();
-		this.uioption = envAttr.getUioption();
-		this.description = envAttr.getDescription();
-	}
 
 	@Override
 	public String toString() {
