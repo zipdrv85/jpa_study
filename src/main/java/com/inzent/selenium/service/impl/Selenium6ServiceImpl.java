@@ -20,7 +20,7 @@ public class Selenium6ServiceImpl extends Selenium6Service {
 	private final ChromeOptions chromeDriver6Options;
 	private final LoginExecutor loginExecutor = new LoginExecutor();
 
-	private final String base_url = StringUtil.NVL(StaticConstractor.url6, PropertyUtil.getConfigValue("selenium.domain"));
+	private final String base_url = StringUtil.NVL(StaticConstractor.url6_user, PropertyUtil.getConfigValue("selenium.domain"));
 	
 	public Selenium6ServiceImpl (ChromeOptions chromeDriver6Options) {
 		this.chromeDriver6Options = chromeDriver6Options;

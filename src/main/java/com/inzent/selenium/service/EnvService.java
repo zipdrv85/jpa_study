@@ -38,26 +38,27 @@ public class EnvService {
 	}
 	
 	@Transactional(readOnly = true)
-	public Env findAllByEnvid(String envid) {
+	public Env findAllByEnvid(Long envid) {
 		return envRepository
 				.findByEnvid(envid);
 	}
 	
 	@Transactional(readOnly = true)
-	public Env findAllByUrl(String url) {
+	public Env findAllByUrl(Long envid) {
 		return envRepository
-				.findByEnvid(url);
+				.findByEnvid(envid);
 	}
 	
 	@Transactional(readOnly = true)
-	public EnvAttr findAllByEnvidAttr(String url) {
-		return (EnvAttr) envRepository
-				.findByEnvid(url)
-				.getEnvAttr();
+	public EnvAttr findAllByEnvidAttr(Long envid) {
+		//return (EnvAttr) envRepository
+				//.findByEnvid(envid)
+				//.getEnvAttr();
+		return null;
 	}
 	
 	@Transactional(readOnly = true)
-	public Env findByVersionAndEnabled(String version, Boolean enabled) {
+	public List<Env> findByVersionAndEnabled(String version, Boolean enabled) {
 		return envRepository
 				.findByVersionAndEnabled(version, enabled);
 	}
@@ -78,7 +79,8 @@ public class EnvService {
 		log.debug(paramEnv.toString());
 		log.debug("=================================================");
 		
-		BeanUtils.copyProperties(paramEnv, env, "envAttr");
+		//BeanUtils.copyProperties(paramEnv, env, "envAttr");
+		//env.addEnv(paramEnv);
 		
 		log.debug("=================================================");
 		log.debug(env.toString());
@@ -87,16 +89,17 @@ public class EnvService {
 		Env rtnEnv = envRepository.saveAndFlush(env);
 		
 		//static constractor Value Change
-		StaticConstractor.setStaticConstractor(rtnEnv);	
+		//StaticConstractor.setStaticConstractor(rtnEnv);	
 		
 		return rtnEnv;
 	}
 
 	@Transactional
-	public Env saveEnvAttrs(String envid, String[] attrName, String[] attrValue) {
+	public Env saveEnvAttrs(Long envid, String[] attrName, String[] attrValue) {
 
 		Env env = envRepository.findByEnvid(envid);
 
+		/*
 		List<EnvAttr> envAttrList = env.getEnvAttr();
 
 		envAttrList.forEach(e -> {
@@ -107,11 +110,12 @@ public class EnvService {
 		});
 
 		env.addEnvAttrs(envid, envAttrList);
+		*/
 
 		Env rtnEnv = envRepository.saveAndFlush(env);
 		
 		//static constractor Value Change
-		StaticConstractor.setStaticConstractor(rtnEnv);
+		//StaticConstractor.setStaticConstractor(rtnEnv);
 		
 		return rtnEnv;
 	}

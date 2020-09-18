@@ -74,7 +74,7 @@ public class SBAdminUIController {
 	@RequestMapping("/env/settings-env/{envid}")
 	private @ResponseBody Env settingsenvFindEnv(Model model,
 			HttpServletRequest request, HttpServletResponse reponse,
-			@PathVariable String envid) throws Exception {
+			@PathVariable Long envid) throws Exception {
 		log.debug("tables settingsenvFindEnv");
 
 		Env env = envService.findAllByEnvid(envid);
@@ -102,7 +102,7 @@ public class SBAdminUIController {
 	@RequestMapping("/env/settings-browser-env/{envid}")
 	private @ResponseBody Env settingsenvBrowserFindEnv(Model model,
 			HttpServletRequest request, HttpServletResponse reponse,
-			@PathVariable String envid) throws Exception {
+			@PathVariable Long envid) throws Exception {
 		log.debug("tables settingsenvBrowserFindEnv");
 
 		return envService.findAllByEnvid(envid);
@@ -112,7 +112,7 @@ public class SBAdminUIController {
 	private @ResponseBody Env settingsenvBrowserSave(Model model,
 			@RequestParam("attrName") String[] attrName,
 			@RequestParam("attrValue") String[] attrValue,
-			@PathVariable String envid) throws Exception {
+			@PathVariable Long envid) throws Exception {
 		log.debug("tables settingsenvBrowserSave");
 
 		return envService.saveEnvAttrs(envid, attrName, attrValue);

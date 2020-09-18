@@ -24,7 +24,7 @@ public class Selenium4ServiceImpl extends Selenium4Service {
 	
 	private LoginExecutor loginExecutor = new LoginExecutor();
 
-	private final String base_url = StringUtil.NVL(StaticConstractor.url4, PropertyUtil.getConfigValue("selenium.domain"));
+	private final String base_url = StringUtil.NVL(StaticConstractor.url4_user, PropertyUtil.getConfigValue("selenium.domain"));
 	private final String BOOKMARK_CHECKED = "fa fa-star bookmarked";
 
 	public Selenium4ServiceImpl (ChromeOptions chromeDriver4Options) {		

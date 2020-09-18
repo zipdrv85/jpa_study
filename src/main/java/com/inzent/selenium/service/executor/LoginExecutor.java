@@ -22,8 +22,8 @@ public class LoginExecutor {
 	public boolean Login4(WebDriver driver, String baseUrl) {		
 		try 
 		{
-			String mainId = StringUtil.NVL(StaticConstractor.id4, PropertyUtil.getConfigValue("selenium.loginId"));
-			String password = StringUtil.NVL(StaticConstractor.password4, PropertyUtil.getConfigValue("selenium.loginPw"));
+			String mainId = StringUtil.NVL(StaticConstractor.id4_user, PropertyUtil.getConfigValue("selenium.loginId"));
+			String password = StringUtil.NVL(StaticConstractor.password4_user, PropertyUtil.getConfigValue("selenium.loginPw"));
 	    	
 	    	driver.get(baseUrl);
 	
@@ -103,8 +103,8 @@ public class LoginExecutor {
 		
 		try 
 		{
-			String mainId = StringUtil.NVL(StaticConstractor.id6, PropertyUtil.getConfigValue("selenium.loginId"));
-			String password = StringUtil.NVL(StaticConstractor.password6, PropertyUtil.getConfigValue("selenium.loginPw"));
+			String mainId = StringUtil.NVL(StaticConstractor.id6_user, PropertyUtil.getConfigValue("selenium.loginId"));
+			String password = StringUtil.NVL(StaticConstractor.password6_user, PropertyUtil.getConfigValue("selenium.loginPw"));
 	    	
 	    	driver.get(baseUrl);
 	    	

@@ -557,23 +557,32 @@ INSERT INTO TEST_CASE_ATTR ( TEST_ID, ATTR_NAME, ATTR_VALUE, DESCRIPTION ) VALUE
 
 DELETE FROM ENV;
 
-INSERT INTO ENV ( ENVID, VERSION, ENABLED, URL, PASSWORD, ID, DESCRIPTION ) VALUES 
-('1', '4.0', TRUE, 'http://192.168.21.98:7080/xedrm/app', 'SUPER', 'SUPER', '인젠트 연구소 개발서버 4.0');
+INSERT INTO ENV ( ENVID, VERSION, ENABLED, ISADMIN, URL, PASSWORD, ID, DESCRIPTION ) VALUES 
+(1, '4.0', true, false, 'http://192.168.21.98:7080/xedrm/app', 'SUPER', 'SUPER', '인젠트 연구소 개발서버 4.0_user'),
+(2, '4.0', true, true, 'http://192.168.21.98:7080/xedrm/admin', 'SUPER', 'SUPER', '인젠트 연구소 개발서버 4.0_admin'),
+(3, '6.0', true, false, 'http://183.111.96.15:7082/xedrm/app', 'test01', 'test01', '인젠트 연구소 개발서버 6.0_user'),
+(4, '6.0', true, true, 'http://183.111.96.15:7082/xedrm/admin', 'SUPER', 'SUPER', '인젠트 연구소 개발서버 6.0_admin');
 
-INSERT INTO ENV ( ENVID, VERSION, ENABLED, URL, PASSWORD, ID, DESCRIPTION ) VALUES 
-('2', '6.0', TRUE, 'http://183.111.96.15:7082/xedrm/app', 'test01', 'test01', '인젠트 연구소 개발서버 6.0');
+INSERT INTO ENVATTR ( ENVATTRID, ATTR_NAME, ATTR_VALUE, UIOPTION, DESCRIPTION, ENVID ) VALUES 
+(1, 'headless', false, 'CHECKBOX', '브라우저가 보일것인지 옵션', 1),
+(1, 'window-size', '1920x1080', 'INPUT', '브라우저가 보이고 화면 사이즈 옵션', 1),
+(1, 'disable-gpu', true, 'CHECKBOX', '브라우저가 GPU를 사용할지 옵션', 1),
+(1, 'ignoreProtectedModeSettings', true, 'CHECKBOX', '브라우저 자바스크립트 실행 기본옵션', 1),
+(2, 'headless', true, 'CHECKBOX', '브라우저가 보일것인지 옵션', 2),
+(2, 'window-size', '1920x1080', 'INPUT', '브라우저가 보이고 화면 사이즈 옵션', 2),
+(2, 'disable-gpu', true, 'CHECKBOX', '브라우저가 GPU를 사용할지 옵션', 2),
+(2, 'ignoreProtectedModeSettings', true, 'CHECKBOX', '브라우저 자바스크립트 실행 기본옵션', 2),
+(3, 'headless', false, 'CHECKBOX', '브라우저가 보일것인지 옵션', 3),
+(3, 'window-size', '1920x1080', 'INPUT', '브라우저가 보이고 화면 사이즈 옵션', 3),
+(3, 'disable-gpu', true, 'CHECKBOX', '브라우저가 GPU를 사용할지 옵션', 3),
+(3, 'ignoreProtectedModeSettings', true, 'CHECKBOX', '브라우저 자바스크립트 실행 기본옵션', 3),
+(4, 'headless', true, 'CHECKBOX', '브라우저가 보일것인지 옵션', 4),
+(4, 'window-size', '1920x1080', 'INPUT', '브라우저가 보이고 화면 사이즈 옵션', 4),
+(4, 'disable-gpu', true, 'CHECKBOX', '브라우저가 GPU를 사용할지 옵션', 4),
+(4, 'ignoreProtectedModeSettings', true, 'CHECKBOX', '브라우저 자바스크립트 실행 기본옵션', 4);
 
-INSERT INTO ENVATTR ( ENVID, ATTR_NAME, ATTR_VALUE, UIOPTION, DESCRIPTION ) VALUES 
-('1', 'headless', false, 'CHECKBOX', '브라우저가 보일것인지 옵션'),
-('1', 'window-size', '1920x1080', 'INPUT', '브라우저가 보이고 화면 사이즈 옵션'),
-('1', 'disable-gpu', true, 'CHECKBOX', '브라우저가 GPU를 사용할지 옵션'),
-('1', 'ignoreProtectedModeSettings', true, 'CHECKBOX', '브라우저 자바스크립트 실행 기본옵션'),
-('2', 'headless', true, 'CHECKBOX', '브라우저가 보일것인지 옵션'),
-('2', 'window-size', '1920x1080', 'INPUT', '브라우저가 보이고 화면 사이즈 옵션'),
-('2', 'disable-gpu', true, 'CHECKBOX', '브라우저가 GPU를 사용할지 옵션'),
-('2', 'ignoreProtectedModeSettings', true, 'CHECKBOX', '브라우저 자바스크립트 실행 기본옵션');
-
+/*
 DELETE FROM MYSEQUENCE;
 
 INSERT INTO MYSEQUENCE (SEQUENCE_NAME, NEXT_VAL) VALUES
-('ENV_SEQ',1);
+('ENV_SEQ',1);*/

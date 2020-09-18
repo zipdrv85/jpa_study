@@ -35,7 +35,7 @@ public class SeleniumWebDriverConfig {
 		
 		ChromeOptions options = new ChromeOptions();
 
-		List<EnvAttr> list = StaticConstractor.envid4Attr;
+		List<EnvAttr> list = StaticConstractor.envid4Attr_user;
 		
 		list.forEach(
 			(s) -> {
@@ -58,7 +58,7 @@ public class SeleniumWebDriverConfig {
 		
 		ChromeOptions options = new ChromeOptions();
 
-		List<EnvAttr> list = StaticConstractor.envid6Attr;
+		List<EnvAttr> list = StaticConstractor.envid6Attr_user;
 		
 		list.forEach(
 			(s) -> {

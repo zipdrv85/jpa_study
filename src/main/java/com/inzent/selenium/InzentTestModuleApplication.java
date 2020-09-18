@@ -9,7 +9,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 @SpringBootApplication
 @EnableAutoConfiguration
 @EnableAspectJAutoProxy
-@ComponentScan({ "com.inzent" })
+@ComponentScan({ "com.inzent", "com.test" })
 public class InzentTestModuleApplication {
 
 	public static void main(String[] args) {

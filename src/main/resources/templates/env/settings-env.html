@@ -33,6 +33,11 @@
 										<input type="hidden" id="version" name="version" />
 										<input type="hidden" id="targetUrl" name="targetUrl" />
                                     </div>
+									<div class="form-group" id="isadminFormGroup">
+										<label for="enabled">관리자 여부</label>
+										<input class="form-control" type="checkbox" id="isadminView" />
+										<input type="hidden" id="isadmin" name="isadmin" />
+                                    </div>
 									<div class="form-group" id="descriptionFormGroup">
 										<label for="description">DESCRIPTION</label>
 										<input class="form-control" id="description" type="input" placeholder="인젠트 연구소 개발서버 4.0" name="description" />
@@ -75,11 +80,18 @@
 	            	$("#description").val(data.description);
 
 	            	$("#enabledView").prop("checked", data.enabled);
-	            	let toggleKey = data.enabled === true ? 'on' : 'off';
-            		$("#enabledView").bootstrapToggle(toggleKey);
+	            	let enabledKey = data.enabled === true ? 'on' : 'off';
+            		$("#enabledView").bootstrapToggle(enabledKey);
             	    $("#enabledView").change(function() {
             	        $("#enabled").val($(this).prop('checked'));
             	    });
+            	    
+	            	let isadminKey = data.isadmin === true ? 'on' : 'off';
+            		$("#isadminView").bootstrapToggle(isadminKey);
+            	    $("#isadminView").change(function() {
+            	        $("#isadmin").val($(this).prop('checked'));
+            	    });
+            	    
             	    $("#enabled").val(data.enabled);
 
 	            	$("#id").val(data.id);
